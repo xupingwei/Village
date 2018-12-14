@@ -1,8 +1,11 @@
 package ink.alf.village;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
+/**
+ * @author 13793
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
