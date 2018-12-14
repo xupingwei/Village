@@ -44,9 +44,9 @@ public class LoginPresenter {
 
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void onMessageEvent(MessageEvent event) {
-        DialogUtils.dimiss();
         if (event.getErrCode() != 0) {
             iLoginView.wxLoginFailed(event.getMsg(), event.getErrCode());
+            DialogUtils.dimiss();
             return;
         }
         //拿到code，二次网络请求获取access_token和用户信息
