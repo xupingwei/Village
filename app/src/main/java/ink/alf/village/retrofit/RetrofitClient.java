@@ -2,10 +2,10 @@ package ink.alf.village.retrofit;
 
 import android.util.Log;
 
-import com.example.demo.retrofit.converter.FastJsonConverterFactory;
 
 import java.util.concurrent.TimeUnit;
 
+import ink.alf.village.retrofit.converter.FastJsonConverterFactory;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;

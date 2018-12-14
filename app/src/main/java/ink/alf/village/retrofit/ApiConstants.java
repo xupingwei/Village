@@ -1,7 +1,7 @@
 package ink.alf.village.retrofit;
 
-import com.example.demo.BuildConfig;
 
+import ink.alf.village.BuildConfig;
 
 /**
  * @author 13793

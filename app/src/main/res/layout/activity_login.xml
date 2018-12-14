@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/logo_bg">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBlackTransparent">
+
+
+        <TextView
+            android:id="@+id/tv_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            android:text="LOGO"
+            android:textColor="@color/colorWhite"
+            android:textSize="28sp" />
+
+        <com.angel.view.SWImageView
+            android:id="@+id/im_logo"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_below="@+id/tv_label"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:src="@mipmap/ic_avatar_default"
+            app:type="circle" />
+
+        <TextView
+            android:id="@+id/tv_version_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/im_logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="v1.0.0"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/ll_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_version_label"
+            android:layout_marginTop="80dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="30dp"
+                android:layout_weight="1"
+                android:background="@color/colorWhite" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="登录"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginRight="30dp"
+                android:layout_weight="1"
+                android:background="@color/colorWhite" />
+
+        </LinearLayout>
+
+        <ink.alf.village.widget.IconfontTextView
+            android:id="@+id/iftv_wx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_layout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="@string/ic_wx"
+            android:textColor="@drawable/ic_wx_selector"
+            android:textSize="40sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

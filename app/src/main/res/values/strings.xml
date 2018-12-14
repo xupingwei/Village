@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Village</string>
+
+    <!--icon-font-->
+    <string name="ic_wx">&#xe754;</string>
+    <string name="ic_df_avatar">&#xe658;</string>
+    <string name="ic_phone">&#xe638;</string>
+    <string name="ic_pass">&#xe64b;</string>
+    <string name="ic_eye">&#xe614;</string>
+
+    <!--微信-->
+    <string name="errcode_success">发送成功</string>
+    <string name="errcode_cancel">发送取消</string>
+    <string name="errcode_deny">发送被拒绝</string>
+    <string name="errcode_unsupported">不支持错误</string>
+    <string name="errcode_unknown">发送返回</string>
 </resources>
