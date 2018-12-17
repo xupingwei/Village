@@ -15,6 +15,7 @@ public class MainConstants {
 
 
     public static Map<String, String> TABS = new HashMap<>();
+    public static Map<String, String> DISTANCE = new HashMap<>();
 
     static {
         TABS.put("RECOMMEND", "推荐");
@@ -23,8 +24,9 @@ public class MainConstants {
         TABS.put("VEHICLE", "交通工具");
         TABS.put("PERSON", "村里人");
         TABS.put("THING", "村里事");
-        TABS.put("2KM", "2km内");
-        TABS.put("5KM", "5km内");
-        TABS.put("10KM", "10km内");
+        //distance
+        DISTANCE.put("2KM", "2km内");
+        DISTANCE.put("5KM", "5km内");
+        DISTANCE.put("10KM", "10km内");
     }
 }

@@ -6,16 +6,52 @@
     android:orientation="vertical">
 
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tablayout"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/themeColor"
-        app:tabGravity="fill"
-        app:tabIndicatorColor="@color/colorGray"
-        app:tabMode="scrollable"
-        app:tabSelectedTextColor="@color/colorWhite"
-        app:tabTextColor="@color/colorGray" />
+        android:background="@color/themeColor">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
+            android:layout_toStartOf="@+id/ll_right_layout"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/colorGray"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/colorWhite"
+            app:tabTextColor="@color/colorGray" />
+
+        <LinearLayout
+            android:id="@+id/ll_right_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:minWidth="35dp"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/iv_arrow"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:background="@mipmap/ic_arrow_down" />
+
+            <TextView
+                android:id="@+id/tv_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
+                android:text="3km内"
+                android:visibility="visible"
+                android:textColor="@color/colorWhite"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
     <TextView
         android:layout_width="match_parent"
