@@ -39,16 +39,16 @@ public class MainActivity extends BaseActivity implements
     @Override
     protected void initView(Bundle savedInstanceState) {
         navigationView.setOnNavigationItemSelectedListener(this);
-        BottomNavigationViewHelper.disableShiftMode(navigationView);
+//        BottomNavigationViewHelper.disableShiftMode(navigationView);
 
         //
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
         List<Fragment> list = new ArrayList<>();
         list.add(TestFragment.newInstance("首页"));
-        list.add(TestFragment.newInstance("钱包"));
-        list.add(TestFragment.newInstance("卡片"));
-        list.add(TestFragment.newInstance("个人"));
+        list.add(TestFragment.newInstance("发帖"));
+        list.add(TestFragment.newInstance("附近"));
+        list.add(TestFragment.newInstance("我"));
         viewPagerAdapter.setList(list);
 
     }
@@ -64,8 +64,10 @@ public class MainActivity extends BaseActivity implements
                 viewPager.setCurrentItem(1);
                 return true;
             case R.id.navigation_nearby:
+                viewPager.setCurrentItem(2);
                 return true;
             case R.id.navigation_me:
+                viewPager.setCurrentItem(3);
                 return true;
 
         }
