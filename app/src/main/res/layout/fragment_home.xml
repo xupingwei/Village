@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/iv_location"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="5dp"
             android:src="@mipmap/ic_location" />
