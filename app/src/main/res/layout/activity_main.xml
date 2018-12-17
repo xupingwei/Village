@@ -6,12 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <android.support.v4.view.ViewPager
+    <ink.alf.village.widget.CustomViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottomNavigationView" />
+        android:layout_above="@+id/line" />
 
+    <TextView
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/bottomNavigationView"
+        android:background="@color/colorGray" />
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"

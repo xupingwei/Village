@@ -9,19 +9,20 @@ public class IconfontTextView extends AppCompatTextView {
 
 
     public IconfontTextView(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public IconfontTextView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public IconfontTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init();
     }
 
-    @Override
-    public void setTypeface(Typeface tf) {
-        super.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "iconfont.ttf"));
+    private void init() {
+        Typeface iconfont = Typeface.createFromAsset(getResources().getAssets(), "iconfont.ttf");
+        this.setTypeface(iconfont);
     }
 }
