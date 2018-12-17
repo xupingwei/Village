@@ -7,6 +7,7 @@ import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import ink.alf.village.MainConstants;
 import ink.alf.village.base.BaseApplication;
 import ink.alf.village.bean.MessageEvent;
 import ink.alf.village.utils.DialogUtils;
@@ -46,6 +47,10 @@ public class LoginPresenter {
     public void onMessageEvent(MessageEvent event) {
         if (event.getErrCode() != 0) {
             iLoginView.wxLoginFailed(event.getMsg(), event.getErrCode());
+            DialogUtils.dimiss();
+            return;
+        }
+        if (!event.getAction().equals(MainConstants.ACTION_LOGIN)) {
             DialogUtils.dimiss();
             return;
         }

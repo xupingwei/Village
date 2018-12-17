@@ -10,6 +10,7 @@ import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 
 import org.greenrobot.eventbus.EventBus;
 
+import ink.alf.village.MainConstants;
 import ink.alf.village.R;
 import ink.alf.village.base.BaseActivity;
 import ink.alf.village.base.BaseApplication;
@@ -36,6 +37,7 @@ public class WXEntryActivity extends BaseActivity implements IWXAPIEventHandler 
         //判断是分享还是登录
         int type = baseResp.getType();
         MessageEvent event = new MessageEvent();
+        event.setAction(MainConstants.ACTION_LOGIN);
         switch (baseResp.errCode) {
             //拒绝授权
             case BaseResp.ErrCode.ERR_AUTH_DENIED:
@@ -58,6 +60,7 @@ public class WXEntryActivity extends BaseActivity implements IWXAPIEventHandler 
                     event.setCode(((SendAuth.Resp) baseResp).code);
                 } else if (type == MSG_TYPE_SHARE) {
                     //分享成功
+                    event.setAction(MainConstants.ACTION_SHARE);
                 }
 
                 break;

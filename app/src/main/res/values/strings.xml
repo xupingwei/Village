@@ -7,6 +7,10 @@
     <string name="ic_phone">&#xe638;</string>
     <string name="ic_pass">&#xe64b;</string>
     <string name="ic_eye">&#xe614;</string>
+    <string name="ic_note">&#xe610;</string>
+    <string name="ic_time">&#xe764;</string>
+    <string name="ic_home">&#xe607;</string>
+    <string name="ic_publish">&#xe622;</string>
 
     <!--微信-->
     <string name="errcode_success">发送成功</string>
