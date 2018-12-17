@@ -16,6 +16,7 @@ import butterknife.BindView;
 import ink.alf.village.base.BaseActivity;
 import ink.alf.village.ui.ViewPagerAdapter;
 import ink.alf.village.ui.fragment.FragmentHome;
+import ink.alf.village.ui.fragment.FragmentNearby;
 import ink.alf.village.ui.fragment.TestFragment;
 import ink.alf.village.utils.ToastUtils;
 import ink.alf.village.widget.CustomViewPager;
@@ -50,7 +51,7 @@ public class MainActivity extends BaseActivity implements
         viewPager.setScanScroll(false);
         List<Fragment> list = new ArrayList<>();
         list.add(new FragmentHome());
-        list.add(TestFragment.newInstance("附近"));
+        list.add(new FragmentNearby());
         list.add(TestFragment.newInstance("我"));
         viewPagerAdapter.setList(list);
 
