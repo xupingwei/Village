@@ -5,6 +5,10 @@ import android.util.Log;
 
 import com.baidu.location.BDLocation;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import ink.alf.village.bean.ActivitiBean;
 import ink.alf.village.listener.BaiduLocationListener;
 import ink.alf.village.utils.BaiduLocUtils;
 import ink.alf.village.view.IHomeView;
@@ -53,5 +57,12 @@ public class HomePresenter {
 
     public void loadMainData() {
 
+        List<ActivitiBean> beans = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            ActivitiBean bean = new ActivitiBean();
+            bean.setPushName("张三" + i);
+            beans.add(bean);
+        }
+        iHomeView.loadMainDataSuccess(beans);
     }
 }

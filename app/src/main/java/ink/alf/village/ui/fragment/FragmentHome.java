@@ -8,6 +8,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -23,6 +24,8 @@ import butterknife.Unbinder;
 import ink.alf.village.R;
 import ink.alf.village.bean.ActivitiBean;
 import ink.alf.village.presenter.HomePresenter;
+import ink.alf.village.ui.HomeAdapter;
+import ink.alf.village.utils.ToastUtils;
 import ink.alf.village.view.IHomeView;
 
 /**
@@ -62,6 +65,7 @@ public class FragmentHome extends Fragment implements IHomeView {
         super.onViewCreated(view, savedInstanceState);
         homePresenter = new HomePresenter(getActivity(), this);
         homePresenter.location();
+        homePresenter.loadMainData();
 
     }
 
@@ -74,6 +78,14 @@ public class FragmentHome extends Fragment implements IHomeView {
     @Override
     public void loadMainDataSuccess(List<ActivitiBean> activitiBeans) {
 
+        HomeAdapter homeAdapter = new HomeAdapter(getActivity(), activitiBeans);
+        lvHome.setAdapter(homeAdapter);
+        lvHome.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ToastUtils.showToast(getActivity(), "position = " + position);
+            }
+        });
     }
 
     @Override

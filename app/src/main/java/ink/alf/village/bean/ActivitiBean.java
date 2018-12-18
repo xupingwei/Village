@@ -5,6 +5,7 @@ package ink.alf.village.bean;
  * 活动
  */
 public class ActivitiBean {
+    private String headUrl;
     private String title;
     private String pushName;
     private long pushTime;
@@ -21,6 +22,14 @@ public class ActivitiBean {
     private int follow;
     private int collect;
 
+
+    public String getHeadUrl() {
+        return headUrl;
+    }
+
+    public void setHeadUrl(String headUrl) {
+        this.headUrl = headUrl;
+    }
 
     public String getTitle() {
         return title;
@@ -92,5 +101,12 @@ public class ActivitiBean {
 
     public void setCollect(int collect) {
         this.collect = collect;
+    }
+
+    @Override
+    public String toString() {
+        return "ActivitiBean{" +
+                "pushName='" + pushName + '\'' +
+                '}';
     }
 }
