@@ -55,6 +55,7 @@ public class HomeAdapter extends BaseAdapter {
 
         } else {
             holder = (ViewHolder) convertView.getTag();
+
         }
         ActivitiBean bean = activitiBeans.get(position);
         Log.i(TAG, "getView: bean = " + bean.toString());
