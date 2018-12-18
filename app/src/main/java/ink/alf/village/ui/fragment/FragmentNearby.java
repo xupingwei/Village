@@ -67,7 +67,7 @@ public class FragmentNearby extends Fragment {
     public void onDestroyView() {
         titles.clear();
         fragments.clear();
-        unbinder.unbind();
         super.onDestroyView();
+        unbinder.unbind();
     }
 }

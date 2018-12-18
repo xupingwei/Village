@@ -32,7 +32,7 @@ public class FragmentMe extends Fragment {
 
     @Override
     public void onDestroyView() {
-        unbinder.unbind();
         super.onDestroyView();
+        unbinder.unbind();
     }
 }

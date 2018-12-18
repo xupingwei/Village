@@ -4,11 +4,13 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="colorBlack">#000000</color>
     <color name="colorBlackTransparent">#66000000</color>
     <color name="colorGreen">#1afa29</color>
     <color name="themeColor">#1296db</color>
     <color name="colorGray">#cccccc</color>
     <color name="colorRed">#ff0000</color>
+    <color name="colorLine">#e6e6e6</color>
 
     <!--home tab-->
     <color name="colorTabCheck">#1296db</color>

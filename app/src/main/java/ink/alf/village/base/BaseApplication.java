@@ -6,6 +6,7 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import ink.alf.village.MainConstants;
+import ink.alf.village.utils.BaiduLocUtils;
 
 
 /**
@@ -21,6 +22,7 @@ public class BaseApplication extends Application {
         instance = this;
         iwxapi = WXAPIFactory.createWXAPI(this, MainConstants.WX_APPID, false);
         iwxapi.registerApp(MainConstants.WX_APPID);
+        BaiduLocUtils.init(this);
     }
 
     public static BaseApplication getInstance() {
