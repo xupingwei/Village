@@ -1,6 +1,8 @@
 package ink.alf.village.ui.fragment;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -33,7 +36,7 @@ import ink.alf.village.view.IHomeView;
 /**
  * @author 13793
  */
-public class FragmentHome extends Fragment implements IHomeView {
+public class FragmentHome extends Fragment implements IHomeView, SwipeRefreshLayout.OnRefreshListener {
 
     private static final String TAG = "FragmentHome";
 
@@ -71,14 +74,18 @@ public class FragmentHome extends Fragment implements IHomeView {
         return view;
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         authPermissions();
         homePresenter = new HomePresenter(getActivity(), this);
         homePresenter.location();
-        homePresenter.loadMainData();
 
+        refreshLayout.setColorSchemeColors(Color.BLUE, Color.RED, Color.YELLOW);
+        refreshLayout.setRefreshing(true);
+        homePresenter.loadMainData();
+        refreshLayout.setOnRefreshListener(this);
     }
 
     /**
@@ -107,16 +114,27 @@ public class FragmentHome extends Fragment implements IHomeView {
         PermissionsUtils.getInstance().onRequestPermissionsResult(getActivity(), requestCode, permissions, grantResults);
     }
 
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
     }
 
+
+    @Override
+    public void onRefresh() {
+        homePresenter.loadMainData();
+    }
+
+    private List<ActivitiBean> mainActivitiBeans = new ArrayList<>();
     @Override
     public void loadMainDataSuccess(List<ActivitiBean> activitiBeans) {
-
-        HomeAdapter homeAdapter = new HomeAdapter(getActivity(), activitiBeans);
+        if (refreshLayout.isRefreshing()) {
+            refreshLayout.setRefreshing(false);
+        }
+        mainActivitiBeans.addAll(activitiBeans);
+        HomeAdapter homeAdapter = new HomeAdapter(getActivity(), mainActivitiBeans);
         lvHome.setAdapter(homeAdapter);
         lvHome.setOnItemClickListener((parent, view, position, id) ->
                 ToastUtils.showToast(getActivity(), "position = " + position));
@@ -124,7 +142,9 @@ public class FragmentHome extends Fragment implements IHomeView {
 
     @Override
     public void loadMainDataFailed(String msg, int code) {
-
+        if (refreshLayout.isRefreshing()) {
+            refreshLayout.setRefreshing(false);
+        }
     }
 
     @Override
@@ -136,4 +156,5 @@ public class FragmentHome extends Fragment implements IHomeView {
     public void locationFailed(String msg, int code) {
 
     }
+
 }
