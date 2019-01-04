@@ -1,14 +1,15 @@
 package ink.alf.village.ui.fragment;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -25,6 +26,7 @@ import ink.alf.village.R;
 import ink.alf.village.bean.ActivitiBean;
 import ink.alf.village.presenter.HomePresenter;
 import ink.alf.village.ui.HomeAdapter;
+import ink.alf.village.utils.PermissionsUtils;
 import ink.alf.village.utils.ToastUtils;
 import ink.alf.village.view.IHomeView;
 
@@ -52,6 +54,15 @@ public class FragmentHome extends Fragment implements IHomeView {
     @BindView(R.id.lv_home)
     ListView lvHome;
 
+    //
+    private String[] permissions = new String[]{
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS
+    };
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -63,10 +74,37 @@ public class FragmentHome extends Fragment implements IHomeView {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        authPermissions();
         homePresenter = new HomePresenter(getActivity(), this);
         homePresenter.location();
         homePresenter.loadMainData();
 
+    }
+
+    /**
+     * 授权
+     */
+    private void authPermissions() {
+        PermissionsUtils.getInstance().chekPermissions(getActivity(), permissions,
+                new PermissionsUtils.IPermissionsResult() {
+                    @Override
+                    public void passPermissons() {
+                        Log.d(TAG, "passPermissons: 权限通过");
+
+                    }
+
+                    @Override
+                    public void forbitPermissons() {
+                        ToastUtils.showToast(getActivity(), "权限已禁用");
+
+                    }
+                });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        PermissionsUtils.getInstance().onRequestPermissionsResult(getActivity(), requestCode, permissions, grantResults);
     }
 
     @Override
@@ -80,12 +118,8 @@ public class FragmentHome extends Fragment implements IHomeView {
 
         HomeAdapter homeAdapter = new HomeAdapter(getActivity(), activitiBeans);
         lvHome.setAdapter(homeAdapter);
-        lvHome.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ToastUtils.showToast(getActivity(), "position = " + position);
-            }
-        });
+        lvHome.setOnItemClickListener((parent, view, position, id) ->
+                ToastUtils.showToast(getActivity(), "position = " + position));
     }
 
     @Override
