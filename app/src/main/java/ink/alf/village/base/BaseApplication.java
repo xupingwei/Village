@@ -22,7 +22,7 @@ public class BaseApplication extends Application {
         instance = this;
         iwxapi = WXAPIFactory.createWXAPI(this, MainConstants.WX_APPID, false);
         iwxapi.registerApp(MainConstants.WX_APPID);
-        BaiduLocUtils.init(this);
+        BaiduLocUtils.getInstance().init(this);
     }
 
     public static BaseApplication getInstance() {

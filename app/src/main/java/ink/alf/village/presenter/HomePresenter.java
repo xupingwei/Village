@@ -32,8 +32,8 @@ public class HomePresenter {
      * 定位
      */
     public void location() {
-        BaiduLocUtils.start();
-        BaiduLocUtils.setBaiduLocationListener(location -> {
+        BaiduLocUtils.getInstance().start();
+        BaiduLocUtils.getInstance().setBaiduLocationListener(location -> {
 
             //获取纬度信息
             double latitude = location.getLatitude();

@@ -17,11 +17,22 @@ import ink.alf.village.listener.BaiduLocationListener;
 public class BaiduLocUtils {
 
     @SuppressLint("StaticFieldLeak")
-    private static LocationClient locationClient;
-    private static LocationClientOption locationClientOption;
-    private static BaiduLocationListener locationListener;
+    private LocationClient locationClient;
+    private LocationClientOption locationClientOption;
+    private BaiduLocationListener locationListener;
 
-    public static void init(Context context) {
+    private static BaiduLocUtils mInstance;
+
+    public synchronized static BaiduLocUtils getInstance() {
+
+        if (mInstance == null) {
+            mInstance = new BaiduLocUtils();
+        }
+        return mInstance;
+    }
+
+
+    public void init(Context context) {
         locationClient = new LocationClient(context.getApplicationContext());
         locationClientOption = new LocationClientOption();
 
@@ -56,6 +67,7 @@ public class BaiduLocUtils {
         locationClientOption.setIsNeedLocationPoiList(true);
         //是否收集crash信息，默认收集
         locationClientOption.SetIgnoreCacheException(false);
+//        locationClientOption.setOpenGps(false);
         locationClientOption.setOpenGps(true);
         //设置是否需要海拔信息，默认不需要
         locationClientOption.setIsNeedAltitude(false);
@@ -66,15 +78,15 @@ public class BaiduLocUtils {
                 LocationClientOption.LOC_SENSITIVITY_HIGHT);
         //设置option
         locationClient.setLocOption(locationClientOption);
-
     }
 
-    public static void start() {
+    public void start() {
         if (null == locationClient) {
             throw new RuntimeException("LocationClient is not initial");
         }
         if (!locationClient.isStarted()) {
             locationClient.start();
+            locationClient.requestLocation();
         }
     }
 
@@ -84,7 +96,7 @@ public class BaiduLocUtils {
      * @param id
      * @param notification
      */
-    public static void enableLocInForeground(int id, Notification notification) {
+    public void enableLocInForeground(int id, Notification notification) {
 
         if (null == locationClient) {
             throw new RuntimeException("LocationClient is not initial");
@@ -99,7 +111,7 @@ public class BaiduLocUtils {
      *
      * @param b
      */
-    public static void disableLocInForeground(boolean b) {
+    public void disableLocInForeground(boolean b) {
         if (null == locationClient) {
             throw new RuntimeException("LocationClient is not initial");
         }
@@ -107,7 +119,7 @@ public class BaiduLocUtils {
     }
 
 
-    public static void setBaiduLocationListener(BaiduLocationListener listener) {
+    public void setBaiduLocationListener(BaiduLocationListener listener) {
         locationListener = listener;
     }
 }
