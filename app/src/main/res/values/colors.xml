@@ -11,6 +11,11 @@
     <color name="colorGray">#cccccc</color>
     <color name="colorRed">#ff0000</color>
     <color name="colorLine">#e6e6e6</color>
+    <color name="color66">#666666</color>
+    <color name="colorDarkGrey">#636363</color>
+    <color name="colorDarkBlack">#313131</color>
+    <color name="colorOrange">#FFA500</color>
+    <color name="colorWheat">#F5DEB3</color>
 
     <!--home tab-->
     <color name="colorTabCheck">#1296db</color>

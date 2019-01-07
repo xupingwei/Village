@@ -9,13 +9,13 @@ import java.util.List;
 /**
  * @author 13793
  */
-public class NearbyPagerAdapter extends FragmentPagerAdapter {
+public class HomePagerAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> fragmentList;
     private List<String> titles;
 
-    public NearbyPagerAdapter(FragmentManager fm, List<Fragment> fragmentList,
-                              List<String> titles) {
+    public HomePagerAdapter(FragmentManager fm, List<Fragment> fragmentList,
+                            List<String> titles) {
         super(fm);
         this.fragmentList = fragmentList;
         this.titles = titles;

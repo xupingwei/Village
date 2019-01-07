@@ -21,7 +21,7 @@ import butterknife.Unbinder;
 import ink.alf.village.R;
 import ink.alf.village.bean.ActivitiBean;
 import ink.alf.village.presenter.ContentPresenter;
-import ink.alf.village.ui.HomeAdapter;
+import ink.alf.village.ui.ContentAdapter;
 import ink.alf.village.utils.ToastUtils;
 import ink.alf.village.view.IContentView;
 
@@ -66,7 +66,6 @@ public class FragmentContent extends Fragment implements IContentView, SwipeRefr
         if (null != bundle) {
             reqKey = bundle.getString("reqKey");
         }
-        ToastUtils.showToast(getActivity(), reqKey);
         Log.d(TAG, "onViewCreated: reqKey = " + reqKey);
         contentPresenter = new ContentPresenter(getActivity(), this);
         refreshLayout.setColorSchemeColors(Color.BLUE, Color.RED, Color.YELLOW);
@@ -90,19 +89,19 @@ public class FragmentContent extends Fragment implements IContentView, SwipeRefr
 
     @Override
     public void loadMainDataSuccess(List<ActivitiBean> activitiBeans) {
-        if (refreshLayout.isRefreshing()) {
+        if (null != refreshLayout && refreshLayout.isRefreshing()) {
             refreshLayout.setRefreshing(false);
         }
         mainActivitiBeans.addAll(activitiBeans);
-        HomeAdapter homeAdapter = new HomeAdapter(getActivity(), mainActivitiBeans);
-        lvHome.setAdapter(homeAdapter);
+        ContentAdapter contentAdapter = new ContentAdapter(getActivity(), mainActivitiBeans);
+        lvHome.setAdapter(contentAdapter);
         lvHome.setOnItemClickListener((parent, view, position, id) ->
                 ToastUtils.showToast(getActivity(), "position = " + position));
     }
 
     @Override
     public void loadMainDataFailed(String msg, int code) {
-        if (refreshLayout.isRefreshing()) {
+        if (null != refreshLayout && refreshLayout.isRefreshing()) {
             refreshLayout.setRefreshing(false);
         }
     }

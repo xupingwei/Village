@@ -14,6 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="260dp"
+            android:id="@+id/ll_top"
             android:background="@mipmap/logo_bg"
             android:orientation="vertical">
 
@@ -23,7 +24,7 @@
                 android:layout_height="120dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="50dp"
-                android:src="@mipmap/ic_avatar_default"
+                android:src="@mipmap/demo"
                 app:type="circle" />
 
             <LinearLayout
@@ -70,6 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
+            android:id="@+id/rl_nickname_layout"
             android:background="@color/colorWhite"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
@@ -79,16 +81,27 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="昵称"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp" />
+                android:textColor="@color/colorDarkGrey"
+                android:textSize="@dimen/text14" />
+
+            <TextView
+                android:id="@+id/tv_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/iv_arrow"
+                android:text="PingW"
+                android:textColor="@color/colorDarkBlack"
+                android:textSize="@dimen/text16" />
+
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:id="@+id/iv_arrow"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:background="@mipmap/ic_arrow_right" />
-
         </RelativeLayout>
 
         <RelativeLayout
@@ -104,12 +117,21 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="性别"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp" />
+                android:textColor="@color/colorDarkGrey"
+                android:textSize="@dimen/text14" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/iv_arrow_gender"
+                android:text="女"
+                android:textColor="@color/colorDarkBlack"
+                android:textSize="@dimen/text16" />
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:id="@+id/iv_arrow_gender"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:background="@mipmap/ic_arrow_right" />
@@ -129,12 +151,23 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="微信认证"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp" />
+                android:textColor="@color/colorDarkGrey"
+                android:textSize="@dimen/text14" />
+
+            <TextView
+                android:id="@+id/tv_auth_wx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/iv_arrow_wx"
+                android:text="已认证"
+                android:textColor="@color/colorOrange"
+                android:textSize="@dimen/text16" />
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:id="@+id/iv_arrow_wx"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:background="@mipmap/ic_arrow_right" />
@@ -155,13 +188,24 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="支付宝认证"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp" />
+                android:textColor="@color/colorDarkGrey"
+                android:textSize="@dimen/text14" />
+
+            <TextView
+                android:id="@+id/tv_auth_alipay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/iv_arrow_alipay"
+                android:text="未认证"
+                android:textColor="@color/colorGray"
+                android:textSize="@dimen/text16" />
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_alignParentEnd="true"
+                android:id="@+id/iv_arrow_alipay"
                 android:layout_centerVertical="true"
                 android:background="@mipmap/ic_arrow_right" />
 
@@ -181,12 +225,23 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="手机号认证"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp" />
+                android:textColor="@color/colorDarkGrey"
+                android:textSize="@dimen/text14" />
+
+            <TextView
+                android:id="@+id/tv_auth_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/iv_auth_phone"
+                android:text="18390872563"
+                android:textColor="@color/colorOrange"
+                android:textSize="@dimen/text16" />
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:id="@+id/iv_auth_phone"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:background="@mipmap/ic_arrow_right" />
@@ -206,12 +261,36 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="检查更新"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp" />
+                android:textColor="@color/colorDarkGrey"
+                android:textSize="@dimen/text14" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/iv_arrow_upgrade"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/round" />
+
+                <TextView
+                    android:id="@+id/tv_upgrade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="new"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/text14" />
+            </RelativeLayout>
+
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
+                android:id="@+id/iv_arrow_upgrade"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:background="@mipmap/ic_arrow_right" />
@@ -231,8 +310,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="分享"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp" />
+                android:textColor="@color/colorDarkGrey"
+                android:textSize="@dimen/text14" />
 
             <ImageView
                 android:layout_width="25dp"
@@ -258,8 +337,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="问题反馈"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp" />
+                android:textColor="@color/colorDarkGrey"
+                android:textSize="@dimen/text14" />
 
             <ImageView
                 android:layout_width="25dp"

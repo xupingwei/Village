@@ -1,7 +1,6 @@
 package ink.alf.village.ui;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +17,14 @@ import ink.alf.village.bean.ActivitiBean;
 /**
  * @author 13793
  */
-public class HomeAdapter extends BaseAdapter {
+public class ContentAdapter extends BaseAdapter {
 
-    private static final String TAG = "HomeAdapter";
+    private static final String TAG = "ContentAdapter";
 
     private Context mContext;
     private List<ActivitiBean> activitiBeans;
 
-    public HomeAdapter(Context mContext, List<ActivitiBean> activitiBeans) {
+    public ContentAdapter(Context mContext, List<ActivitiBean> activitiBeans) {
         this.mContext = mContext;
         this.activitiBeans = activitiBeans;
     }
@@ -58,7 +57,6 @@ public class HomeAdapter extends BaseAdapter {
 
         }
         ActivitiBean bean = activitiBeans.get(position);
-        Log.i(TAG, "getView: bean = " + bean.toString());
         holder.tvUserName.setText(bean.getPushName());
         return convertView;
     }

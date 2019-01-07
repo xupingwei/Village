@@ -28,7 +28,7 @@ import butterknife.Unbinder;
 import ink.alf.village.R;
 import ink.alf.village.constant.MainConstants;
 import ink.alf.village.presenter.HomePresenter;
-import ink.alf.village.ui.NearbyPagerAdapter;
+import ink.alf.village.ui.HomePagerAdapter;
 import ink.alf.village.utils.PermissionsUtils;
 import ink.alf.village.utils.ToastUtils;
 import ink.alf.village.view.IHomeView;
@@ -88,7 +88,7 @@ public class FragmentHome extends Fragment implements IHomeView {
             titles.add(entry.getValue());
             fragments.add(FragmentContent.newInstance(entry.getKey()));
         }
-        tabViewPager.setAdapter(new NearbyPagerAdapter(getFragmentManager(), fragments, titles));
+        tabViewPager.setAdapter(new HomePagerAdapter(getFragmentManager(), fragments, titles));
         tabLayout.setupWithViewPager(tabViewPager);
 
         homePresenter = new HomePresenter(getActivity(), this);
