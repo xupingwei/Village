@@ -10,7 +10,7 @@ import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 
 import org.greenrobot.eventbus.EventBus;
 
-import ink.alf.village.MainConstants;
+import ink.alf.village.constant.MainConstants;
 import ink.alf.village.R;
 import ink.alf.village.base.BaseActivity;
 import ink.alf.village.base.BaseApplication;

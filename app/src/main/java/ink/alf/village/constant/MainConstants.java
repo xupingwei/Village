@@ -1,4 +1,4 @@
-package ink.alf.village;
+package ink.alf.village.constant;
 
 import java.util.HashMap;
 import java.util.Map;

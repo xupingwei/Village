@@ -1,4 +1,4 @@
-package ink.alf.village;
+package ink.alf.village.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -13,11 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import ink.alf.village.R;
 import ink.alf.village.base.BaseActivity;
 import ink.alf.village.ui.ViewPagerAdapter;
 import ink.alf.village.ui.fragment.FragmentHome;
 import ink.alf.village.ui.fragment.FragmentMe;
-import ink.alf.village.ui.fragment.FragmentNearby;
 import ink.alf.village.utils.ToastUtils;
 import ink.alf.village.widget.CustomViewPager;
 
@@ -51,7 +51,6 @@ public class MainActivity extends BaseActivity implements
         viewPager.setScanScroll(false);
         List<Fragment> list = new ArrayList<>();
         list.add(new FragmentHome());
-        list.add(new FragmentNearby());
         list.add(new FragmentMe());
         viewPagerAdapter.setList(list);
 
@@ -61,17 +60,14 @@ public class MainActivity extends BaseActivity implements
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         menuItem = item;
         switch (item.getItemId()) {
-            case R.id.navigation_home:
+            case R.id.navigation_nearby:
                 viewPager.setCurrentItem(0);
                 return true;
             case R.id.navigation_publish:
                 ToastUtils.showToast(this, "发帖");
                 return false;
-            case R.id.navigation_nearby:
-                viewPager.setCurrentItem(1);
-                return true;
             case R.id.navigation_me:
-                viewPager.setCurrentItem(2);
+                viewPager.setCurrentItem(1);
                 return true;
 
         }

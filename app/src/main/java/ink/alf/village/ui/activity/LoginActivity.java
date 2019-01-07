@@ -1,4 +1,4 @@
-package ink.alf.village;
+package ink.alf.village.ui.activity;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -6,6 +6,7 @@ import android.view.View;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import ink.alf.village.R;
 import ink.alf.village.base.BaseActivity;
 import ink.alf.village.presenter.LoginPresenter;
 import ink.alf.village.utils.ToastUtils;

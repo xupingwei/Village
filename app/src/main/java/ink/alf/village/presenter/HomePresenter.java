@@ -52,37 +52,4 @@ public class HomePresenter {
         });
     }
 
-    public void loadMainData() {
-
-        @SuppressLint("HandlerLeak")
-        Handler handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                if (msg.what == 0) {
-                    List<ActivitiBean> beans = new ArrayList<>();
-                    for (int i = 0; i < 20; i++) {
-                        ActivitiBean bean = new ActivitiBean();
-                        bean.setPushName("张三" + i);
-                        beans.add(bean);
-                    }
-                    iHomeView.loadMainDataSuccess(beans);
-                }
-            }
-        };
-        new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                try {
-                    Thread.sleep(5000);
-                    handler.sendEmptyMessage(0);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }.start();
-
-    }
 }

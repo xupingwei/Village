@@ -5,7 +5,7 @@ import android.app.Application;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
-import ink.alf.village.MainConstants;
+import ink.alf.village.constant.MainConstants;
 import ink.alf.village.utils.BaiduLocUtils;
 
 

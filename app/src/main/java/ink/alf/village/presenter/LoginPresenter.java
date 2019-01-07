@@ -7,7 +7,7 @@ import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import ink.alf.village.MainConstants;
+import ink.alf.village.constant.MainConstants;
 import ink.alf.village.base.BaseApplication;
 import ink.alf.village.bean.MessageEvent;
 import ink.alf.village.utils.DialogUtils;
