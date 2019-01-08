@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -26,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import ink.alf.village.R;
-import ink.alf.village.constant.MainConstants;
+import ink.alf.village.common.MainConstants;
 import ink.alf.village.presenter.HomePresenter;
 import ink.alf.village.ui.HomePagerAdapter;
 import ink.alf.village.utils.PermissionsUtils;
@@ -49,6 +50,9 @@ public class FragmentHome extends Fragment implements IHomeView {
     EditText etSearch;
     @BindView(R.id.tv_hot)
     TextView tvHot;
+
+    @BindView(R.id.ivbtn_more)
+    ImageButton ivBtnMore;
 
     @BindView(R.id.tablayout)
     TabLayout tabLayout;
@@ -93,6 +97,10 @@ public class FragmentHome extends Fragment implements IHomeView {
 
         homePresenter = new HomePresenter(getActivity(), this);
         homePresenter.location();
+
+        ivBtnMore.setOnClickListener(v -> {
+            ToastUtils.showToast(getActivity(), "MORE");
+        });
     }
 
     @Override

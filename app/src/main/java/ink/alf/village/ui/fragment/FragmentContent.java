@@ -94,9 +94,11 @@ public class FragmentContent extends Fragment implements IContentView, SwipeRefr
         }
         mainActivitiBeans.addAll(activitiBeans);
         ContentAdapter contentAdapter = new ContentAdapter(getActivity(), mainActivitiBeans);
-        lvHome.setAdapter(contentAdapter);
-        lvHome.setOnItemClickListener((parent, view, position, id) ->
-                ToastUtils.showToast(getActivity(), "position = " + position));
+        if (null != lvHome) {
+            lvHome.setAdapter(contentAdapter);
+            lvHome.setOnItemClickListener((parent, view, position, id) ->
+                    ToastUtils.showToast(getActivity(), "position = " + position));
+        }
     }
 
     @Override

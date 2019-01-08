@@ -20,4 +20,11 @@
     <string name="errcode_deny">发送被拒绝</string>
     <string name="errcode_unsupported">不支持错误</string>
     <string name="errcode_unknown">发送返回</string>
+    <!--system-->
+    <string name="publish">发布</string>
+    <string name="cancel">取消</string>
+    <string name="share_new_things">分享新鲜事</string>
+
+    <!--other-->
+    <string name="error_gif">x or y bound size should be at least %1$dpx and file size should be no more than %2$sM</string>
 </resources>

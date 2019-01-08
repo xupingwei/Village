@@ -16,8 +16,8 @@
 
         <com.angel.view.SWImageView
             android:id="@+id/iv_user_avatar"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:src="@mipmap/ic_avatar_default"
@@ -38,12 +38,12 @@
                 android:ellipsize="end"
                 android:maxLength="10"
                 android:text="张三三三"
-                android:textSize="12sp" />
+                android:textSize="@dimen/text12" />
 
             <ImageView
                 android:id="@+id/iv_time"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_below="@+id/tv_user_name"
                 android:layout_marginTop="2dp"
                 android:contentDescription="time"
@@ -56,7 +56,9 @@
                 android:layout_below="@+id/tv_user_name"
                 android:layout_toEndOf="@+id/iv_time"
                 android:text="2018-12-18 16:28"
-                android:textSize="10sp" />
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="3dp"
+                android:textSize="@dimen/text10" />
         </RelativeLayout>
 
         <LinearLayout
@@ -68,8 +70,8 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:background="@mipmap/ic_label" />
 
             <TextView
@@ -78,9 +80,9 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLength="15"
-                android:text="车，村里事，村里人,村里人"
+                android:text="车，村里事"
                 android:textColor="@color/colorGray"
-                android:textSize="12sp" />
+                android:textSize="@dimen/text10" />
 
         </LinearLayout>
     </RelativeLayout>
@@ -94,13 +96,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:lineHeight="18dp"
         android:text="SwipeRefreshLayout详解和自定义上拉加载更多 - 简书
 个人主页演示Demo下载 本文重点介绍了SwipeRefreshLayout的使用和自定View
 继承SwipeRefreshLayout添加上拉加载更多的功能。
 介绍之前,先...
 www.jianshu.com...  - 百度快照"
-        android:textColor="@color/colorBlack"
-        android:textSize="14sp" />
+        android:textColor="@color/colorDarkGrey"
+        android:textSize="@dimen/text12" />
 
     <ListView
         android:id="@+id/lv_images"
@@ -131,7 +134,8 @@ www.jianshu.com...  - 百度快照"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:text="120"
-                android:textSize="12sp" />
+                android:textColor="@color/colorDarkGrey"
+                android:textSize="@dimen/text12" />
 
         </LinearLayout>
 
@@ -152,7 +156,8 @@ www.jianshu.com...  - 百度快照"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:text="120"
-                android:textSize="12sp" />
+                android:textColor="@color/colorDarkGrey"
+                android:textSize="@dimen/text12" />
 
         </LinearLayout>
 
@@ -166,21 +171,22 @@ www.jianshu.com...  - 百度快照"
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:background="@mipmap/ic_share" />
+                android:background="@android:drawable/ic_menu_share" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:text="分享"
-                android:textSize="12sp" />
+                android:textColor="@color/colorDarkGrey"
+                android:textSize="@dimen/text12" />
 
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:background="@color/colorLine" />
+        android:layout_height="8dp"
+        android:background="@color/colorWhiteSmoke" />
 
 </LinearLayout>

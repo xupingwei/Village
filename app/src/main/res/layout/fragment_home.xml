@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorGray"
+    android:background="@color/colorWhiteSmoke"
     android:fitsSystemWindows="true">
 
     <LinearLayout
@@ -22,8 +22,8 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="5dp"
                 android:src="@mipmap/ic_location" />
@@ -35,8 +35,9 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="2dp"
                 android:text="西安"
+                android:maxLength="4"
                 android:textColor="@color/colorWhite"
-                android:textSize="16sp" />
+                android:textSize="@dimen/text12" />
         </LinearLayout>
 
         <RelativeLayout
@@ -63,6 +64,7 @@
                 android:layout_toEndOf="@+id/iv_icon_search"
                 android:background="@null"
                 android:focusable="false"
+                android:textSize="@dimen/text14"
                 android:gravity="center_vertical"
                 android:hint="热搜"
                 android:textColorHint="@color/colorGray" />
@@ -93,8 +95,8 @@
                     android:layout_centerVertical="true"
                     android:layout_toEndOf="@+id/line_search"
                     android:text="热搜"
-                    android:textColor="@color/colorGray"
-                    android:textSize="16sp"
+                    android:textColor="@color/colorWheat"
+                    android:textSize="@dimen/text14"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -105,24 +107,23 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="1dp"
-        android:background="@color/themeColor">
+        android:layout_height="30dp"
+        android:background="@color/colorWhiteSmoke">
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tablayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginEnd="5dp"
-            android:layout_toStartOf="@+id/ll_right_layout"
+            android:layout_toStartOf="@+id/ll_more_layout"
             app:tabGravity="fill"
-            app:tabIndicatorColor="@color/colorGray"
+            app:tabIndicatorColor="@color/themeColor"
             app:tabMode="scrollable"
-            app:tabSelectedTextColor="@color/colorWhite"
-            app:tabTextColor="@color/colorGray" />
+            app:tabSelectedTextColor="@color/themeColor"
+            app:tabTextColor="@color/colorDarkBlack" />
 
         <LinearLayout
-            android:id="@+id/ll_right_layout"
+            android:id="@+id/ll_more_layout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
@@ -131,30 +132,19 @@
             android:orientation="vertical">
 
             <ImageButton
-                android:id="@+id/iv_arrow"
+                android:id="@+id/ivbtn_more"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:background="@mipmap/ic_arrow_down" />
-
-            <!--<TextView-->
-            <!--android:id="@+id/tv_distance"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginEnd="2dp"-->
-            <!--android:text="3km内"-->
-            <!--android:visibility="visible"-->
-            <!--android:textColor="@color/colorWhite"-->
-            <!--android:textSize="10sp" />-->
+                android:background="@mipmap/more" />
 
         </LinearLayout>
-
     </RelativeLayout>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:textColor="@color/colorGray" />
+        android:layout_height="1dp"
+        android:background="@color/colorLine" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/nearby_viewpager"

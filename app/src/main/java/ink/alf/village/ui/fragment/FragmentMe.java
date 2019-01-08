@@ -1,5 +1,6 @@
 package ink.alf.village.ui.fragment;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -11,11 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import ink.alf.village.R;
+import ink.alf.village.ui.activity.LoginActivity;
 import ink.alf.village.utils.BlurUtils;
 
 /**
@@ -25,6 +28,9 @@ public class FragmentMe extends Fragment {
 
     @BindView(R.id.ll_top)
     LinearLayout llHdearLayout;
+
+    @BindView(R.id.rl_nickname_layout)
+    RelativeLayout rlNicknameLayout;
 
     private Unbinder unbinder;
 
@@ -42,6 +48,10 @@ public class FragmentMe extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.logo_bg);
         llHdearLayout.setBackground(new BitmapDrawable(BlurUtils.doBlur(bitmap, 10, 10)));
+
+        rlNicknameLayout.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+        });
     }
 
     @Override

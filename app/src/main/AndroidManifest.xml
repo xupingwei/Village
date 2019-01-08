@@ -24,6 +24,9 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <!--MMessage-->
+    <uses-permission android:name="com.tencent.mm.permission.MM_MESSAGE" />
+
 
     <meta-data
         android:name="com.baidu.lbsapi.API_KEY"
@@ -59,12 +62,23 @@
         <activity
             android:name=".ui.activity.LoginActivity"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.activity.PublishActivity"
+            android:theme="@style/AppTheme" />
 
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" />
-
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="PhotoPicker"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
     </application>
 
 </manifest>

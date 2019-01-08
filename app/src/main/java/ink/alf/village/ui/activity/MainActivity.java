@@ -1,6 +1,7 @@
 package ink.alf.village.ui.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -18,7 +19,6 @@ import ink.alf.village.base.BaseActivity;
 import ink.alf.village.ui.ViewPagerAdapter;
 import ink.alf.village.ui.fragment.FragmentHome;
 import ink.alf.village.ui.fragment.FragmentMe;
-import ink.alf.village.utils.ToastUtils;
 import ink.alf.village.widget.CustomViewPager;
 
 /**
@@ -64,7 +64,7 @@ public class MainActivity extends BaseActivity implements
                 viewPager.setCurrentItem(0);
                 return true;
             case R.id.navigation_publish:
-                ToastUtils.showToast(this, "发帖");
+                startActivity(new Intent(this, PublishActivity.class));
                 return false;
             case R.id.navigation_me:
                 viewPager.setCurrentItem(1);
