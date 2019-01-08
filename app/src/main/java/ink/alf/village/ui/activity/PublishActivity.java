@@ -27,6 +27,7 @@ import ink.alf.village.base.MyGlideEngine;
 import ink.alf.village.common.GifSizeFilter;
 import ink.alf.village.ui.ImageAddAdapter;
 import ink.alf.village.utils.ToastUtils;
+import ink.alf.village.widget.ActionSheet;
 import ink.alf.village.widget.GridSpacingItemDecoration;
 
 /**
@@ -45,6 +46,8 @@ public class PublishActivity extends BaseActivity {
     RecyclerView recyclerView;
     @BindView(R.id.rl_choose_label_layout)
     RelativeLayout rlChooseLabelLayout;
+    @BindView(R.id.tv_label)
+    TextView tvLabel;
 
     private static final int MAX_LENGTH = 10;
     private static final int REQUEST_CODE_CHOOSE = 1000;
@@ -89,8 +92,8 @@ public class PublishActivity extends BaseActivity {
             }
         });
         //adapter
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(4, 10, false));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(3, 10, false));
         imageAddAdapter = new ImageAddAdapter(this);
         recyclerView.setAdapter(imageAddAdapter);
         imageAddAdapter.setOnItemClickListener(new ImageAddAdapter.OnItemClickListener() {
@@ -131,10 +134,28 @@ public class PublishActivity extends BaseActivity {
 
     }
 
+    private ActionSheet actionSheet;
+
     /**
      * 选择便签分类
      */
     private void chooseCatagory() {
+        actionSheet = new ActionSheet.DialogBuilder(this)
+                .addSheet("找人", v -> {
+                    tvLabel.setText("找人");
+                    actionSheet.dismiss();
+
+                })
+                .addSheet("找车", v -> {
+                    tvLabel.setText("找车");
+                    actionSheet.dismiss();
+                })
+                .addSheet("问事", v -> {
+                    tvLabel.setText("问事");
+                    actionSheet.dismiss();
+                })
+                .addCancelListener(v -> actionSheet.dismiss())
+                .create();
 
     }
 

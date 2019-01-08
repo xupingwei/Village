@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
+<shape xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ignore="MissingDefaultResource">
 
     <!-- 背景填充颜色值 -->
-    <solid android:color="@color/colorGray" />
+    <solid android:color="@color/colorWhiteSmoke" />
 
     <!-- radius值越大，越趋于圆形 -->
     <corners android:radius="5dip" />

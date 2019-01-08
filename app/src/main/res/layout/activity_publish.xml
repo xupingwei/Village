@@ -50,7 +50,7 @@
             android:padding="5dp"
             android:textColor="@color/colorDarkBlack"
             android:textColorHint="@color/colorGray"
-            android:textSize="@dimen/text12" />
+            android:textSize="@dimen/text14" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
@@ -76,6 +76,7 @@
             android:textSize="@dimen/text12" />
 
         <TextView
+            android:id="@+id/tv_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
