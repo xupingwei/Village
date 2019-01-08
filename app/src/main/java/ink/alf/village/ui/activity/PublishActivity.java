@@ -63,7 +63,7 @@ public class PublishActivity extends BaseActivity {
 
         tvPublish.setOnClickListener(v -> ToastUtils.showToast(this, "发布"));
         tvCancel.setOnClickListener(v -> this.finish());
-        rlChooseLabelLayout.setOnClickListener(v -> ToastUtils.showToast(this, "选择标签"));
+        rlChooseLabelLayout.setOnClickListener(v -> chooseCatagory());
         etPublishContent.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -128,6 +128,13 @@ public class PublishActivity extends BaseActivity {
                 imageAddAdapter.deleteData(position);
             }
         });
+
+    }
+
+    /**
+     * 选择便签分类
+     */
+    private void chooseCatagory() {
 
     }
 
