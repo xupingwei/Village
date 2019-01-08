@@ -2,6 +2,7 @@ package ink.alf.village.ui.fragment;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -30,6 +31,7 @@ import ink.alf.village.R;
 import ink.alf.village.common.MainConstants;
 import ink.alf.village.presenter.HomePresenter;
 import ink.alf.village.ui.HomePagerAdapter;
+import ink.alf.village.ui.activity.SelectAreaActivity;
 import ink.alf.village.utils.PermissionsUtils;
 import ink.alf.village.utils.ToastUtils;
 import ink.alf.village.view.IHomeView;
@@ -98,9 +100,8 @@ public class FragmentHome extends Fragment implements IHomeView {
         homePresenter = new HomePresenter(getActivity(), this);
         homePresenter.location();
 
-        ivBtnMore.setOnClickListener(v -> {
-            ToastUtils.showToast(getActivity(), "MORE");
-        });
+        ivBtnMore.setOnClickListener(v -> ToastUtils.showToast(getActivity(), "MORE"));
+        llLayoutLocation.setOnClickListener(v -> startActivity(new Intent(getActivity(), SelectAreaActivity.class)));
     }
 
     @Override

@@ -16,6 +16,9 @@ public class MainConstants {
 
     public static Map<String, String> TABS = new HashMap<>();
     public static Map<String, String> DISTANCE = new HashMap<>();
+    public static String[] CITIES = new String[]{
+            "西安", "雁塔区", "新城区", "长安区", "未央区", "西咸新区", "高新区"
+    };
 
     static {
         TABS.put("RECOMMEND", "推荐");
