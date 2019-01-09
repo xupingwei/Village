@@ -1,7 +1,7 @@
 package ink.alf.village.listener;
 
 public interface UploadMutliListener {
-    void onUploadMutliSuccess();
+    void onUploadMutliSuccess(String urls);
 
     void onUploadMutliFail(Error error);
 }

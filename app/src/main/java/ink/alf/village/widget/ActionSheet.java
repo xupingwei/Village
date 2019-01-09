@@ -90,7 +90,7 @@ public class ActionSheet extends Dialog {
         sheetTextSize = 16;
         titleHeight = dp2px(40);
         cancelHeight = dp2px(40);
-        sheetHeight = dp2px(50);
+        sheetHeight = dp2px(45);
         marginBottom = dp2px(10);
 
         sheetList = new ArrayList<>();

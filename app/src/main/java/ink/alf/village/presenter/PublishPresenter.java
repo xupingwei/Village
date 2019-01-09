@@ -3,9 +3,16 @@ package ink.alf.village.presenter;
 import android.content.Context;
 import android.util.Log;
 
-import ink.alf.village.base.BaseApplication;
-import ink.alf.village.common.QiniuConsts;
-import ink.alf.village.utils.QiniuUtils;
+import java.util.List;
+
+import ink.alf.village.bean.ActivitiBean;
+import ink.alf.village.listener.UploadMutliListener;
+import ink.alf.village.retrofit.RetrofitClient;
+import ink.alf.village.retrofit.subscriber.ApiCallback;
+import ink.alf.village.retrofit.subscriber.SchedulersCompat;
+import ink.alf.village.service.IMainService;
+import ink.alf.village.utils.DialogUtils;
+import ink.alf.village.utils.QiniuUploadHelper;
 import ink.alf.village.view.IPublishView;
 
 /**
@@ -22,21 +29,46 @@ public class PublishPresenter {
     }
 
 
-    public void uploadImage(String filePath) {
-        String upToken = QiniuUtils.getQiniuToken();
-        String fileKey = String.valueOf(System.currentTimeMillis());
-        BaseApplication.uploadManager.put(filePath, fileKey, upToken, (key1, info, response) -> {
+    public void uploadImage(List<String> filesPath) {
+        DialogUtils.getInstance(mContext).show();
+        QiniuUploadHelper.getInstance()
+                .uploadMutliFiles(filesPath, new UploadMutliListener() {
+                    @Override
+                    public void onUploadMutliSuccess(String urls) {
+                        Log.i("uploadImage", "onUploadMutliSuccess: " + urls);
+                        DialogUtils.getInstance(mContext).dismiss();
+                    }
 
-            Log.i("qiniu", key1 + ",\r\n " + info + ",\r\n " + response);
-            if (info.isOK()) {
-                iPublishView.uploadImageSuccess(
-                        QiniuUtils.privateDownloadUrl(QiniuConsts.BASE_IMAGE_URL + key1));
+                    @Override
+                    public void onUploadMutliFail(Error error) {
+                        DialogUtils.getInstance(mContext).dismiss();
+                        Log.i("uploadImage", "onUploadMutliFail: " + error);
+                    }
+                });
+    }
 
-            } else {
-                //failure
-                Log.i("qiniu", "uploadImage: failure");
 
-            }
-        }, null);
+    /**
+     * 创建活动
+     *
+     * @param token token
+     * @param bean  bean
+     */
+    public void createActiviti(String token, ActivitiBean bean) {
+
+        RetrofitClient.getRetrofit().create(IMainService.class).createActiviti(token, bean)
+                .compose(SchedulersCompat.applyIoSchedulers())
+                .subscribe(new ApiCallback(mContext) {
+                    @Override
+                    public void onSuccess(String data) {
+
+                    }
+
+                    @Override
+                    public void onFailure(int errorCode, String msg) {
+
+                    }
+                });
+
     }
 }

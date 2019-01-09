@@ -2,7 +2,6 @@ package ink.alf.village.retrofit;
 
 import android.util.Log;
 
-
 import java.util.concurrent.TimeUnit;
 
 import ink.alf.village.retrofit.converter.FastJsonConverterFactory;

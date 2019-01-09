@@ -18,6 +18,7 @@ import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.filter.Filter;
 import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -138,6 +139,15 @@ public class PublishActivity extends BaseActivity implements IPublishView {
             }
         });
 
+        tvPublish.setOnClickListener(v -> {
+            List<Uri> uris = imageAddAdapter.getImageLists();
+            List<String> filesPath = new ArrayList<>();
+            for (Uri uri : uris) {
+                filesPath.add(FileUtils.getRealFilePath(this, uri));
+            }
+            publishPresenter.uploadImage(filesPath);
+        });
+
     }
 
     private ActionSheet actionSheet;
@@ -174,16 +184,10 @@ public class PublishActivity extends BaseActivity implements IPublishView {
             List<Uri> mSelected = Matisse.obtainResult(data);
             Log.d("Matisse", "mSelected: " + mSelected);
             imageAddAdapter.addDatas(mSelected);
-            if (mSelected.size() > 0) {
-                Log.i("PublishActivity", "getEncodedPath: " + mSelected.get(0).getEncodedPath());
-                Log.i("PublishActivity", "getEncodedAuthority: " + mSelected.get(0).getEncodedAuthority());
-                Log.i("PublishActivity", "getAuthority: " + mSelected.get(0).getAuthority());
-                Log.i("PublishActivity", "getUserInfo: " + mSelected.get(0).getUserInfo());
-                Log.i("PublishActivity", "getHost: " + mSelected.get(0).getHost());
-                Log.i("PublishActivity", "getPath: " + mSelected.get(0).getPath());
-                Log.i("PublishActivity", "FileUtils:getRealFilePath: " + FileUtils.getRealFilePath(this, mSelected.get(0)));
-                publishPresenter.uploadImage(FileUtils.getRealFilePath(this, mSelected.get(0)));
-            }
+//            if (mSelected.size() > 0) {
+//                Log.i("PublishActivity", "FileUtils:getRealFilePath: " + FileUtils.getRealFilePath(this, mSelected.get(0)));
+//                publishPresenter.uploadImage(FileUtils.getRealFilePath(this, mSelected.get(0)));
+//            }
 
         }
     }

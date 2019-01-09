@@ -13,7 +13,7 @@ import ink.alf.village.R;
 /**
  * @author 13793
  */
-public  abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,14 +29,21 @@ public  abstract class BaseActivity extends AppCompatActivity {
         super.onWindowFocusChanged(hasFocus);
     }
 
+
+    private String getToken() {
+        return "";
+    }
+
     /**
-     *  获取布局的Id
+     * 获取布局的Id
+     *
      * @return
      */
     protected abstract int getLayoutId();
 
     /**
      * 初始化
+     *
      * @param savedInstanceState
      */
 

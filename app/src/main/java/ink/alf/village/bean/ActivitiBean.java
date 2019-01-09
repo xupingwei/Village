@@ -9,19 +9,59 @@ public class ActivitiBean {
     private String title;
     private String pushName;
     private long pushTime;
-    /**
-     * 以","分割
-     */
-    private String catorogy;
-    private String content;
-    /**
-     * 以","分割
-     */
-    private String imgUrls;
     private String address;
+
+    /**
+     * 以","分割
+     */
+    private String images;
+    private String content;
     private int follow;
     private int collect;
+    private String userId;
 
+    /**
+     * 以","分割,"找车，找人，问事"
+     */
+    private String catagory;
+
+    /**
+     * 标签，以逗号隔开如：“VEHICLE，PERSON，THING”
+     */
+    private String salt;
+
+
+    public String getCatagory() {
+        return catagory;
+    }
+
+    public void setCatagory(String catagory) {
+        this.catagory = catagory;
+    }
+
+    public String getImages() {
+        return images;
+    }
+
+    public void setImages(String images) {
+        this.images = images;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
 
     public String getHeadUrl() {
         return headUrl;
@@ -55,14 +95,6 @@ public class ActivitiBean {
         this.pushTime = pushTime;
     }
 
-    public String getCatorogy() {
-        return catorogy;
-    }
-
-    public void setCatorogy(String catorogy) {
-        this.catorogy = catorogy;
-    }
-
     public String getContent() {
         return content;
     }
@@ -71,13 +103,6 @@ public class ActivitiBean {
         this.content = content;
     }
 
-    public String getImgUrls() {
-        return imgUrls;
-    }
-
-    public void setImgUrls(String imgUrls) {
-        this.imgUrls = imgUrls;
-    }
 
     public String getAddress() {
         return address;
