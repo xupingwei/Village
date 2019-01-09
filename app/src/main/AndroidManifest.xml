@@ -76,7 +76,7 @@
             android:process=":remote" />
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="PhotoPicker"
+            android:authorities="ink.alf.village.fileprovider"
             android:grantUriPermissions="true"
             android:exported="false">
             <meta-data

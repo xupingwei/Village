@@ -281,7 +281,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="new"
+                    android:text="New"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/text14" />
             </RelativeLayout>

@@ -129,6 +129,7 @@
             android:layout_alignParentEnd="true"
             android:gravity="center"
             android:minWidth="35dp"
+            android:visibility="gone"
             android:orientation="vertical">
 
             <ImageButton

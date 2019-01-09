@@ -25,15 +25,21 @@ import ink.alf.village.R;
 import ink.alf.village.base.BaseActivity;
 import ink.alf.village.base.MyGlideEngine;
 import ink.alf.village.common.GifSizeFilter;
+import ink.alf.village.presenter.PublishPresenter;
 import ink.alf.village.ui.ImageAddAdapter;
+import ink.alf.village.utils.FileUtils;
 import ink.alf.village.utils.ToastUtils;
+import ink.alf.village.view.IPublishView;
 import ink.alf.village.widget.ActionSheet;
 import ink.alf.village.widget.GridSpacingItemDecoration;
 
 /**
  * @author 13793
  */
-public class PublishActivity extends BaseActivity {
+public class PublishActivity extends BaseActivity implements IPublishView {
+
+
+    private static final String TAG = "PublishActivity";
 
     @BindView(R.id.tv_cancel)
     TextView tvCancel;
@@ -53,6 +59,7 @@ public class PublishActivity extends BaseActivity {
     private static final int REQUEST_CODE_CHOOSE = 1000;
 
     private ImageAddAdapter imageAddAdapter;
+    private PublishPresenter publishPresenter;
 
 
     @Override
@@ -62,8 +69,7 @@ public class PublishActivity extends BaseActivity {
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-
-
+        publishPresenter = new PublishPresenter(this, this);
         tvPublish.setOnClickListener(v -> ToastUtils.showToast(this, "发布"));
         tvCancel.setOnClickListener(v -> this.finish());
         rlChooseLabelLayout.setOnClickListener(v -> chooseCatagory());
@@ -106,7 +112,7 @@ public class PublishActivity extends BaseActivity {
                             .choose(MimeType.ofImage())
                             .countable(true)
                             .capture(true)
-                            .captureStrategy(new CaptureStrategy(true, "PhotoPicker"))
+                            .captureStrategy(new CaptureStrategy(true, "ink.alf.village.fileprovider"))
                             .maxSelectable(9)
                             .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
                             .gridExpectedSize(getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
@@ -164,9 +170,42 @@ public class PublishActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK && null != data) {
+            data.getExtras();
             List<Uri> mSelected = Matisse.obtainResult(data);
             Log.d("Matisse", "mSelected: " + mSelected);
             imageAddAdapter.addDatas(mSelected);
+            if (mSelected.size() > 0) {
+                Log.i("PublishActivity", "getEncodedPath: " + mSelected.get(0).getEncodedPath());
+                Log.i("PublishActivity", "getEncodedAuthority: " + mSelected.get(0).getEncodedAuthority());
+                Log.i("PublishActivity", "getAuthority: " + mSelected.get(0).getAuthority());
+                Log.i("PublishActivity", "getUserInfo: " + mSelected.get(0).getUserInfo());
+                Log.i("PublishActivity", "getHost: " + mSelected.get(0).getHost());
+                Log.i("PublishActivity", "getPath: " + mSelected.get(0).getPath());
+                Log.i("PublishActivity", "FileUtils:getRealFilePath: " + FileUtils.getRealFilePath(this, mSelected.get(0)));
+                publishPresenter.uploadImage(FileUtils.getRealFilePath(this, mSelected.get(0)));
+            }
+
         }
+    }
+
+    @Override
+    public void uploadImageSuccess(String imagesPath) {
+
+        Log.d(TAG, "uploadImageSuccess: " + imagesPath);
+    }
+
+    @Override
+    public void uploadImageFailure(String message, int errorCode) {
+
+    }
+
+    @Override
+    public void insertActivitiSuccess() {
+
+    }
+
+    @Override
+    public void insertActivitiFailure(String message, int code) {
+
     }
 }
