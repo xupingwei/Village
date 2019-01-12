@@ -8,6 +8,7 @@ import com.qiniu.android.storage.UploadManager;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
+import ink.alf.village.common.CrashHandler;
 import ink.alf.village.common.MainConstants;
 import ink.alf.village.utils.BaiduLocUtils;
 
@@ -27,6 +28,7 @@ public class BaseApplication extends Application {
         iwxapi = WXAPIFactory.createWXAPI(this, MainConstants.WX_APPID, false);
         iwxapi.registerApp(MainConstants.WX_APPID);
         BaiduLocUtils.getInstance().init(this);
+//        CrashHandler.getInstance().init(this);
         initQiniu();
     }
 

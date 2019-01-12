@@ -9,10 +9,10 @@ import ink.alf.village.BuildConfig;
 public class ApiConstants {
 
     //dev
-    private final static String DEV_BASE_URL = "http://192.168.30.76:8080";
+    private final static String DEV_BASE_URL = "http://192.168.31.84:8080";
 
     //release
-    private final static String REL_BASE_URL = "http://192.168.30.76:8080";
+    private final static String REL_BASE_URL = "http://192.168.31.84:8080";
 
 
     public static final String BASR_URL;

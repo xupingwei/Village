@@ -3,7 +3,11 @@ package ink.alf.village.presenter;
 import android.content.Context;
 import android.util.Log;
 
+import com.alibaba.fastjson.JSON;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import ink.alf.village.bean.ActivitiBean;
 import ink.alf.village.listener.UploadMutliListener;
@@ -11,7 +15,6 @@ import ink.alf.village.retrofit.RetrofitClient;
 import ink.alf.village.retrofit.subscriber.ApiCallback;
 import ink.alf.village.retrofit.subscriber.SchedulersCompat;
 import ink.alf.village.service.IMainService;
-import ink.alf.village.utils.DialogUtils;
 import ink.alf.village.utils.QiniuUploadHelper;
 import ink.alf.village.view.IPublishView;
 
@@ -30,19 +33,18 @@ public class PublishPresenter {
 
 
     public void uploadImage(List<String> filesPath) {
-        DialogUtils.getInstance(mContext).show();
         QiniuUploadHelper.getInstance()
                 .uploadMutliFiles(filesPath, new UploadMutliListener() {
                     @Override
                     public void onUploadMutliSuccess(String urls) {
                         Log.i("uploadImage", "onUploadMutliSuccess: " + urls);
-                        DialogUtils.getInstance(mContext).dismiss();
+                        iPublishView.uploadImageSuccess(urls);
                     }
 
                     @Override
                     public void onUploadMutliFail(Error error) {
-                        DialogUtils.getInstance(mContext).dismiss();
                         Log.i("uploadImage", "onUploadMutliFail: " + error);
+                        iPublishView.uploadImageFailure(error.getMessage(), 1000);
                     }
                 });
     }
@@ -56,17 +58,25 @@ public class PublishPresenter {
      */
     public void createActiviti(String token, ActivitiBean bean) {
 
-        RetrofitClient.getRetrofit().create(IMainService.class).createActiviti(token, bean)
+        Map<String, Object> mapValus = new HashMap<>();
+        mapValus.put("catagory", bean.getCatagory());
+        mapValus.put("content", bean.getContent());
+        mapValus.put("images", bean.getImages());
+        mapValus.put("salt", bean.getSalt());
+        mapValus.put("address", bean.getAddress());
+        RetrofitClient.getRetrofit().create(IMainService.class).createActiviti(token, mapValus)
                 .compose(SchedulersCompat.applyIoSchedulers())
                 .subscribe(new ApiCallback(mContext) {
                     @Override
                     public void onSuccess(String data) {
-
+                        ActivitiBean activitiBean = JSON.parseObject(data, ActivitiBean.class);
+                        Log.i("createActiviti", "onSuccess: " + activitiBean.toString());
+                        iPublishView.insertActivitiSuccess();
                     }
 
                     @Override
                     public void onFailure(int errorCode, String msg) {
-
+                        iPublishView.insertActivitiFailure(msg, errorCode);
                     }
                 });
 

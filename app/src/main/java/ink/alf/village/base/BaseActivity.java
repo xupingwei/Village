@@ -30,8 +30,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
 
-    private String getToken() {
-        return "";
+    protected String getToken() {
+        return "40289fd4684070d80168407325490000";
     }
 
     /**

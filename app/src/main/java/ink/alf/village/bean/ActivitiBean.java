@@ -1,10 +1,12 @@
 package ink.alf.village.bean;
 
+import java.io.Serializable;
+
 /**
  * @author 13793
  * 活动
  */
-public class ActivitiBean {
+public class ActivitiBean implements Serializable {
     private String headUrl;
     private String title;
     private String pushName;
@@ -14,7 +16,7 @@ public class ActivitiBean {
     /**
      * 以","分割
      */
-    private String images;
+    private String images = "";
     private String content;
     private int follow;
     private int collect;
@@ -30,6 +32,8 @@ public class ActivitiBean {
      */
     private String salt;
 
+    public ActivitiBean() {
+    }
 
     public String getCatagory() {
         return catagory;
@@ -128,10 +132,22 @@ public class ActivitiBean {
         this.collect = collect;
     }
 
+
     @Override
     public String toString() {
         return "ActivitiBean{" +
-                "pushName='" + pushName + '\'' +
+                "headUrl='" + headUrl + '\'' +
+                ", title='" + title + '\'' +
+                ", pushName='" + pushName + '\'' +
+                ", pushTime=" + pushTime +
+                ", address='" + address + '\'' +
+                ", images='" + images + '\'' +
+                ", content='" + content + '\'' +
+                ", follow=" + follow +
+                ", collect=" + collect +
+                ", userId='" + userId + '\'' +
+                ", catagory='" + catagory + '\'' +
+                ", salt='" + salt + '\'' +
                 '}';
     }
 }

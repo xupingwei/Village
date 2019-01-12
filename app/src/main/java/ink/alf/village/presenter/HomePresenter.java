@@ -48,6 +48,9 @@ public class HomePresenter {
 
             Log.d(TAG, "onReceiveLocation: latitude=" + latitude + ",longitude=" + longitude + "," +
                     "radius=" + radius + ",coorType=" + coorType + ",errorCode=" + errorCode);
+            Log.d(TAG, "addrStr: " + location.getAddrStr() + ",province:" + location.getProvince() +
+                    ",city:" + location.getCity() + ",District:" + location.getDistrict()
+                    + ",Street:" + location.getStreet());
             iHomeView.locationSuccess(location);
         });
     }

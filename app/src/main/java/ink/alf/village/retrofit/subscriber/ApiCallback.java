@@ -10,10 +10,10 @@ package ink.alf.village.retrofit.subscriber;
 
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 
 import java.io.IOException;
 import java.net.ConnectException;
@@ -68,34 +68,18 @@ public abstract class ApiCallback implements Observer<ResponseBody> {
 
     @Override
     public void onSubscribe(final Disposable d) {
-        if (isShow) {
-            dialog = new SweetAlertDialog(mContext, SweetAlertDialog.PROGRESS_TYPE)
-                    .setTitleText(msg);
-            dialog.setCancelable(true);
-            dialog.setCanceledOnTouchOutside(true);
-            //点击取消的时候取消订阅
-            dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                @Override
-                public void onCancel(DialogInterface dialog) {
-                    //取消订阅
-                    d.dispose();
-                }
-            });
-            dialog.show();
-        }
     }
 
 
     @Override
     public void onNext(ResponseBody r) {
-        if (isShow) {
-            dialog.dismiss();
-        }
         try {
             String body = r.string();
             Log.i(TAG, "onNext: body = " + body);
             ResultBean bean = JSON.parseObject(body, ResultBean.class);
             if (bean.success()) {
+//                T t = JSON.parseObject(bean.getData(), new TypeReference<T>() {
+//                });
                 onSuccess(bean.getData());
             } else {
                 onFailure(bean.getCode(), bean.getMsg());
@@ -155,9 +139,6 @@ public abstract class ApiCallback implements Observer<ResponseBody> {
         } else {
             msg = UNKNOWN_ERROR;
             onFailure(102, msg);
-        }
-        if (isShow) {
-            dialog.dismiss();
         }
     }
 

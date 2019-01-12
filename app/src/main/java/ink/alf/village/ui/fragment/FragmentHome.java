@@ -33,6 +33,7 @@ import ink.alf.village.presenter.HomePresenter;
 import ink.alf.village.ui.HomePagerAdapter;
 import ink.alf.village.ui.activity.SelectAreaActivity;
 import ink.alf.village.utils.PermissionsUtils;
+import ink.alf.village.utils.SharedPreferencesHelper;
 import ink.alf.village.utils.ToastUtils;
 import ink.alf.village.view.IHomeView;
 
@@ -139,8 +140,12 @@ public class FragmentHome extends Fragment implements IHomeView {
         PermissionsUtils.getInstance().onRequestPermissionsResult(getActivity(), requestCode, permissions, grantResults);
     }
 
+
     @Override
     public void locationSuccess(BDLocation location) {
+        SharedPreferencesHelper preferencesHelper = new SharedPreferencesHelper(getActivity());
+        preferencesHelper.put("location", location.getCity());
+        preferencesHelper.put("address", location.getAddrStr());
 
     }
 

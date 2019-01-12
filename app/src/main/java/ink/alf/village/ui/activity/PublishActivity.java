@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
@@ -18,6 +19,8 @@ import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.filter.Filter;
 import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,10 +28,14 @@ import butterknife.BindView;
 import ink.alf.village.R;
 import ink.alf.village.base.BaseActivity;
 import ink.alf.village.base.MyGlideEngine;
+import ink.alf.village.bean.ActivitiBean;
+import ink.alf.village.common.CatagoryType;
 import ink.alf.village.common.GifSizeFilter;
 import ink.alf.village.presenter.PublishPresenter;
 import ink.alf.village.ui.ImageAddAdapter;
+import ink.alf.village.utils.DialogUtils;
 import ink.alf.village.utils.FileUtils;
+import ink.alf.village.utils.SharedPreferencesHelper;
 import ink.alf.village.utils.ToastUtils;
 import ink.alf.village.view.IPublishView;
 import ink.alf.village.widget.ActionSheet;
@@ -62,6 +69,8 @@ public class PublishActivity extends BaseActivity implements IPublishView {
     private ImageAddAdapter imageAddAdapter;
     private PublishPresenter publishPresenter;
 
+    private ActivitiBean pushActiviti = new ActivitiBean();
+
 
     @Override
     protected int getLayoutId() {
@@ -71,7 +80,7 @@ public class PublishActivity extends BaseActivity implements IPublishView {
     @Override
     protected void initView(Bundle savedInstanceState) {
         publishPresenter = new PublishPresenter(this, this);
-        tvPublish.setOnClickListener(v -> ToastUtils.showToast(this, "发布"));
+        tvPublish.setOnClickListener(v -> pushActiviti());
         tvCancel.setOnClickListener(v -> this.finish());
         rlChooseLabelLayout.setOnClickListener(v -> chooseCatagory());
         etPublishContent.addTextChangedListener(new TextWatcher() {
@@ -138,17 +147,42 @@ public class PublishActivity extends BaseActivity implements IPublishView {
                 imageAddAdapter.deleteData(position);
             }
         });
-
-        tvPublish.setOnClickListener(v -> {
-            List<Uri> uris = imageAddAdapter.getImageLists();
-            List<String> filesPath = new ArrayList<>();
-            for (Uri uri : uris) {
-                filesPath.add(FileUtils.getRealFilePath(this, uri));
-            }
-            publishPresenter.uploadImage(filesPath);
-        });
-
     }
+
+
+    /**
+     * 发布活动
+     */
+    private void pushActiviti() {
+
+        String content = etPublishContent.getText().toString();
+        if (TextUtils.isEmpty(content)) {
+            ToastUtils.showToast(this, "请输入发布的内容");
+            return;
+        }
+        pushActiviti.setContent(content);
+        if (StringUtils.isEmpty(pushActiviti.getCatagory())) {
+            ToastUtils.showToast(this, "请选择标签");
+            return;
+        }
+
+        SharedPreferencesHelper preferencesHelper = new SharedPreferencesHelper(this);
+        String address = (String) preferencesHelper.getValueForKey("address", "西安");
+        pushActiviti.setAddress(address);
+        List<Uri> uris = imageAddAdapter.getImageLists();
+        //开始请求,创建activiti
+        DialogUtils.getInstance(this).show();
+        if (uris.size() == 0) {
+            publishPresenter.createActiviti(getToken(), pushActiviti);
+        } else {
+            List<String> absimgPath = new ArrayList<>();
+            for (int i = 0; i < uris.size(); i++) {
+                absimgPath.add(FileUtils.getRealFilePath(this, uris.get(i)));
+            }
+            publishPresenter.uploadImage(absimgPath);
+        }
+    }
+
 
     private ActionSheet actionSheet;
 
@@ -159,15 +193,21 @@ public class PublishActivity extends BaseActivity implements IPublishView {
         actionSheet = new ActionSheet.DialogBuilder(this)
                 .addSheet("找人", v -> {
                     tvLabel.setText("找人");
+                    pushActiviti.setCatagory("找人");
+                    pushActiviti.setSalt(CatagoryType.PERSON.getCatagory());
                     actionSheet.dismiss();
 
                 })
                 .addSheet("找车", v -> {
                     tvLabel.setText("找车");
+                    pushActiviti.setCatagory("找车");
+                    pushActiviti.setSalt(CatagoryType.VEHICLE.getCatagory());
                     actionSheet.dismiss();
                 })
                 .addSheet("问事", v -> {
                     tvLabel.setText("问事");
+                    pushActiviti.setCatagory("问事");
+                    pushActiviti.setSalt(CatagoryType.THING.getCatagory());
                     actionSheet.dismiss();
                 })
                 .addCancelListener(v -> actionSheet.dismiss())
@@ -184,32 +224,33 @@ public class PublishActivity extends BaseActivity implements IPublishView {
             List<Uri> mSelected = Matisse.obtainResult(data);
             Log.d("Matisse", "mSelected: " + mSelected);
             imageAddAdapter.addDatas(mSelected);
-//            if (mSelected.size() > 0) {
-//                Log.i("PublishActivity", "FileUtils:getRealFilePath: " + FileUtils.getRealFilePath(this, mSelected.get(0)));
-//                publishPresenter.uploadImage(FileUtils.getRealFilePath(this, mSelected.get(0)));
-//            }
 
         }
     }
 
     @Override
     public void uploadImageSuccess(String imagesPath) {
-
         Log.d(TAG, "uploadImageSuccess: " + imagesPath);
+        pushActiviti.setImages(imagesPath);
+        publishPresenter.createActiviti(getToken(), pushActiviti);
     }
 
     @Override
     public void uploadImageFailure(String message, int errorCode) {
-
+        DialogUtils.getInstance(this).dismiss();
+        ToastUtils.showToast(this, message);
     }
 
     @Override
     public void insertActivitiSuccess() {
-
+        DialogUtils.getInstance(this).dismiss();
+        ToastUtils.showToast(this, "发布成功");
+        this.finish();
     }
 
     @Override
     public void insertActivitiFailure(String message, int code) {
-
+        DialogUtils.getInstance(this).dismiss();
+        ToastUtils.showToast(this, message);
     }
 }
