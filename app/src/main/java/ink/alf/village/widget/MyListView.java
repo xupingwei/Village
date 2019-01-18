@@ -2,9 +2,11 @@ package ink.alf.village.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.ListView;
 
+/**
+ * @author 13793
+ */
 public class MyListView extends ListView {
 
     public MyListView(Context context) {
@@ -15,14 +17,16 @@ public class MyListView extends ListView {
         super(context, attrs);
     }
 
-    public MyListView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    public MyListView(Context context, AttributeSet attrs,
+                      int defStyle) {
+        super(context, attrs, defStyle);
+
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int expandSpec = View.MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2,
-                View.MeasureSpec.AT_MOST);
+        int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2,
+                MeasureSpec.AT_MOST);
         super.onMeasure(widthMeasureSpec, expandSpec);
     }
 }
