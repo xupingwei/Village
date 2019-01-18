@@ -5,12 +5,24 @@ import java.io.Serializable;
 /**
  * @author 13793
  * 活动
+ * {
+ *         "content": "图片图",
+ *         "follow": 0,
+ *         "collect": 0,
+ *         "catagory": "问事",
+ *         "contentImages": "http://images.xaolaf.com/bbd697a19a5fd28fca46971a3105ab36",
+ *         "salt": "THING",
+ *         "headUrl": "http://images.xaolaf.com/7d2fd7d75bb9913f76cba43967e4d9fc",
+ *         "createTime": "2019-01-18T08:09:48.000+0000",
+ *         "address": "北京市海淀区中关村大街",
+ *         "pushNickName": "Jone",
+ *         "pushUserId": "40289ecc67cfcfb10167cfd8ca370000"
+ *       }
  */
 public class ActivitiBean implements Serializable {
     private String headUrl;
-    private String title;
-    private String pushName;
-    private long pushTime;
+    private String pushNickName;
+    private long createTime;
     private String address;
 
     /**
@@ -20,7 +32,7 @@ public class ActivitiBean implements Serializable {
     private String content;
     private int follow;
     private int collect;
-    private String userId;
+    private String pushUserId;
 
     /**
      * 以","分割,"找车，找人，问事"
@@ -51,13 +63,6 @@ public class ActivitiBean implements Serializable {
         this.images = images;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
 
     public String getSalt() {
         return salt;
@@ -75,29 +80,6 @@ public class ActivitiBean implements Serializable {
         this.headUrl = headUrl;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getPushName() {
-        return pushName;
-    }
-
-    public void setPushName(String pushName) {
-        this.pushName = pushName;
-    }
-
-    public long getPushTime() {
-        return pushTime;
-    }
-
-    public void setPushTime(long pushTime) {
-        this.pushTime = pushTime;
-    }
 
     public String getContent() {
         return content;
@@ -132,22 +114,27 @@ public class ActivitiBean implements Serializable {
         this.collect = collect;
     }
 
+    public String getPushNickName() {
+        return pushNickName;
+    }
 
-    @Override
-    public String toString() {
-        return "ActivitiBean{" +
-                "headUrl='" + headUrl + '\'' +
-                ", title='" + title + '\'' +
-                ", pushName='" + pushName + '\'' +
-                ", pushTime=" + pushTime +
-                ", address='" + address + '\'' +
-                ", images='" + images + '\'' +
-                ", content='" + content + '\'' +
-                ", follow=" + follow +
-                ", collect=" + collect +
-                ", userId='" + userId + '\'' +
-                ", catagory='" + catagory + '\'' +
-                ", salt='" + salt + '\'' +
-                '}';
+    public void setPushNickName(String pushNickName) {
+        this.pushNickName = pushNickName;
+    }
+
+    public long getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(long createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getPushUserId() {
+        return pushUserId;
+    }
+
+    public void setPushUserId(String pushUserId) {
+        this.pushUserId = pushUserId;
     }
 }
