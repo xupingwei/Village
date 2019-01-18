@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +18,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import ink.alf.village.R;
+import ink.alf.village.base.BaseFragment;
 import ink.alf.village.bean.ActivitiBean;
+import ink.alf.village.bean.ActivitiPagerInfo;
 import ink.alf.village.presenter.ContentPresenter;
 import ink.alf.village.ui.ContentAdapter;
 import ink.alf.village.utils.ToastUtils;
@@ -28,7 +29,7 @@ import ink.alf.village.view.IContentView;
 /**
  * @author 13793
  */
-public class FragmentContent extends Fragment implements IContentView, SwipeRefreshLayout.OnRefreshListener {
+public class FragmentContent extends BaseFragment implements IContentView, SwipeRefreshLayout.OnRefreshListener {
 
     private static final String TAG = "FragmentContent";
     private Unbinder unbinder;
@@ -39,6 +40,12 @@ public class FragmentContent extends Fragment implements IContentView, SwipeRefr
     ListView lvHome;
 
     private ContentPresenter contentPresenter;
+
+
+    private List<ActivitiBean> mainActivitiBeans = new ArrayList<>();
+    private ContentAdapter contentAdapter;
+    private int currPage = 0;
+    private int pageCount = 10;
 
     private String reqKey = "";
 
@@ -70,8 +77,11 @@ public class FragmentContent extends Fragment implements IContentView, SwipeRefr
         contentPresenter = new ContentPresenter(getActivity(), this);
         refreshLayout.setColorSchemeColors(Color.BLUE, Color.RED, Color.YELLOW);
         refreshLayout.setRefreshing(true);
-        contentPresenter.loadMainData();
+        contentPresenter.loadNewerData(getToken(), currPage, pageCount);
         refreshLayout.setOnRefreshListener(this);
+
+        //
+        contentAdapter = new ContentAdapter(getActivity(), mainActivitiBeans);
     }
 
     @Override
@@ -82,23 +92,29 @@ public class FragmentContent extends Fragment implements IContentView, SwipeRefr
 
     @Override
     public void onRefresh() {
-        contentPresenter.loadMainData();
+        currPage = 0;
+        contentPresenter.loadNewerData(getToken(), currPage, 10);
     }
 
-    private List<ActivitiBean> mainActivitiBeans = new ArrayList<>();
 
     @Override
-    public void loadMainDataSuccess(List<ActivitiBean> activitiBeans) {
+    public void loadMainDataSuccess(ActivitiPagerInfo pagerInfo) {
         if (null != refreshLayout && refreshLayout.isRefreshing()) {
             refreshLayout.setRefreshing(false);
         }
-        mainActivitiBeans.addAll(activitiBeans);
-        ContentAdapter contentAdapter = new ContentAdapter(getActivity(), mainActivitiBeans);
+        if (currPage == 0) {
+            mainActivitiBeans.clear();
+            mainActivitiBeans.addAll(pagerInfo.getLists());
+        } else {
+            mainActivitiBeans.addAll(pagerInfo.getLists());
+        }
+        contentAdapter.notifyDataSetChanged();
         if (null != lvHome) {
             lvHome.setAdapter(contentAdapter);
             lvHome.setOnItemClickListener((parent, view, position, id) ->
                     ToastUtils.showToast(getActivity(), "position = " + position));
         }
+        currPage = pagerInfo.getPage() + 1;
     }
 
     @Override
@@ -106,5 +122,6 @@ public class FragmentContent extends Fragment implements IContentView, SwipeRefr
         if (null != refreshLayout && refreshLayout.isRefreshing()) {
             refreshLayout.setRefreshing(false);
         }
+
     }
 }

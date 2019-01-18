@@ -1,14 +1,17 @@
 package ink.alf.village.presenter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.alibaba.fastjson.JSON;
 
-import ink.alf.village.bean.ActivitiBean;
+import java.util.HashMap;
+import java.util.Map;
+
+import ink.alf.village.bean.ActivitiPagerInfo;
+import ink.alf.village.retrofit.RetrofitClient;
+import ink.alf.village.retrofit.subscriber.ApiCallback;
+import ink.alf.village.retrofit.subscriber.SchedulersCompat;
+import ink.alf.village.service.IMainService;
 import ink.alf.village.view.IContentView;
 
 /**
@@ -24,38 +27,25 @@ public class ContentPresenter {
         this.iContentView = iContentView;
     }
 
-
-    public void loadMainData() {
-
-        @SuppressLint("HandlerLeak")
-        Handler handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                if (msg.what == 0) {
-                    List<ActivitiBean> beans = new ArrayList<>();
-                    for (int i = 0; i < 20; i++) {
-                        ActivitiBean bean = new ActivitiBean();
-                        bean.setPushName("张三" + i);
-                        beans.add(bean);
+    public void loadNewerData(String token, int page, int pageCount) {
+        Map<String, Object> mapValus = new HashMap<>();
+        mapValus.put("token", token);
+        mapValus.put("page", page);
+        mapValus.put("pageCount", pageCount);
+        RetrofitClient.getRetrofit().create(IMainService.class).listNewer(mapValus)
+                .compose(SchedulersCompat.applyIoSchedulers())
+                .subscribe(new ApiCallback(mContext) {
+                    @Override
+                    public void onSuccess(String data) {
+                        ActivitiPagerInfo info = JSON.parseObject(data, ActivitiPagerInfo.class);
+                        iContentView.loadMainDataSuccess(info);
                     }
-                    iContentView.loadMainDataSuccess(beans);
-                }
-            }
-        };
-        new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                try {
-                    Thread.sleep(5000);
-                    handler.sendEmptyMessage(0);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
 
-            }
-        }.start();
-
+                    @Override
+                    public void onFailure(int errorCode, String msg) {
+                        iContentView.loadMainDataFailed(msg, errorCode);
+                    }
+                });
     }
+
 }

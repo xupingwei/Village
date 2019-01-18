@@ -15,4 +15,12 @@ public interface IMainService {
     @FormUrlEncoded
     Observable<ResponseBody> createActiviti(@Field("token") String token,
                                             @FieldMap Map<String, Object> bean);
+
+
+    /**
+     * activiti  最新
+     */
+    @POST("/activiti/listNewer")
+    @FormUrlEncoded
+    Observable<ResponseBody> listNewer(@FieldMap Map<String, Object> bean);
 }

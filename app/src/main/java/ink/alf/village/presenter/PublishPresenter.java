@@ -61,7 +61,7 @@ public class PublishPresenter {
         Map<String, Object> mapValus = new HashMap<>();
         mapValus.put("catagory", bean.getCatagory());
         mapValus.put("content", bean.getContent());
-        mapValus.put("images", bean.getImages());
+        mapValus.put("images", bean.getContentImages());
         mapValus.put("salt", bean.getSalt());
         mapValus.put("address", bean.getAddress());
         RetrofitClient.getRetrofit().create(IMainService.class).createActiviti(token, mapValus)

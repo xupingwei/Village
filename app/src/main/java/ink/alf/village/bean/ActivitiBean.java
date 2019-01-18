@@ -1,5 +1,7 @@
 package ink.alf.village.bean;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.io.Serializable;
 
 /**
@@ -22,13 +24,14 @@ import java.io.Serializable;
 public class ActivitiBean implements Serializable {
     private String headUrl;
     private String pushNickName;
-    private long createTime;
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    private String createTime;
     private String address;
 
     /**
      * 以","分割
      */
-    private String images = "";
+    private String contentImages = "";
     private String content;
     private int follow;
     private int collect;
@@ -55,14 +58,13 @@ public class ActivitiBean implements Serializable {
         this.catagory = catagory;
     }
 
-    public String getImages() {
-        return images;
+    public String getContentImages() {
+        return contentImages;
     }
 
-    public void setImages(String images) {
-        this.images = images;
+    public void setContentImages(String contentImages) {
+        this.contentImages = contentImages;
     }
-
 
     public String getSalt() {
         return salt;
@@ -122,11 +124,11 @@ public class ActivitiBean implements Serializable {
         this.pushNickName = pushNickName;
     }
 
-    public long getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(long createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 

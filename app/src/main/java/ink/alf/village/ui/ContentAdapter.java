@@ -5,7 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import com.angel.view.SWImageView;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -51,23 +56,45 @@ public class ContentAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.item_home, null);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
-
         } else {
             holder = (ViewHolder) convertView.getTag();
-
         }
         ActivitiBean bean = activitiBeans.get(position);
-        holder.tvUserName.setText(bean.getPushName());
+        holder.tvUserName.setText(bean.getPushNickName());
+        holder.tvPushTime.setText(bean.getCreateTime() + "");
+        holder.tvCatagory.setText(bean.getCatagory());
+        Glide.with(mContext).asBitmap().load(bean.getHeadUrl()).into(holder.ivUserAvatar);
+        holder.tvContent.setText(bean.getContent());
+        holder.tvFollow.setText(bean.getFollow() + "");
+        holder.tvCollect.setText(bean.getCollect() + "");
+        String[] images = bean.getContentImages().split(",");
+        ImageAdapter imageAdapter = new ImageAdapter(images, mContext);
+        holder.lvImages.setAdapter(imageAdapter);
         return convertView;
     }
 
     static class ViewHolder {
-
+        @BindView(R.id.iv_user_avatar)
+        SWImageView ivUserAvatar;
         @BindView(R.id.tv_user_name)
         TextView tvUserName;
+        @BindView(R.id.iv_time)
+        ImageView ivTime;
+        @BindView(R.id.tv_push_time)
+        TextView tvPushTime;
+        @BindView(R.id.tv_catagory)
+        TextView tvCatagory;
+        @BindView(R.id.lv_images)
+        ListView lvImages;
+        @BindView(R.id.tv_content)
+        TextView tvContent;
+        @BindView(R.id.tv_follow)
+        TextView tvFollow;
+        @BindView(R.id.tv_collect)
+        TextView tvCollect;
 
-        public ViewHolder(View convertView) {
-            ButterKnife.bind(this, convertView);
+        ViewHolder(View view) {
+            ButterKnife.bind(this, view);
         }
     }
 }

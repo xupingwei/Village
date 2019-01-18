@@ -231,7 +231,7 @@ public class PublishActivity extends BaseActivity implements IPublishView {
     @Override
     public void uploadImageSuccess(String imagesPath) {
         Log.d(TAG, "uploadImageSuccess: " + imagesPath);
-        pushActiviti.setImages(imagesPath);
+        pushActiviti.setContentImages(imagesPath);
         publishPresenter.createActiviti(getToken(), pushActiviti);
     }
 
