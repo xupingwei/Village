@@ -1,6 +1,8 @@
 package ink.alf.village.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,11 +24,18 @@ public class ImageAdapter extends BaseAdapter {
 
     private String[] images;
     private Context mContext;
+    private Fragment fragment;
+    private RequestOptions options;
 
 
-    public ImageAdapter(String[] images, Context mContext) {
+    @SuppressLint("CheckResult")
+    public ImageAdapter(String[] images, Context mContext, Fragment fragment) {
+
         this.images = images;
+        this.fragment = fragment;
         this.mContext = mContext;
+        options = new RequestOptions();
+        options.centerCrop().placeholder(R.mipmap.icon_image_default);
     }
 
     @Override
@@ -47,14 +57,14 @@ public class ImageAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
         if (null == holder) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_image_add, null);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_image_add, parent, false);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
         Log.d("ImageAdapter", "getView: " + images[position]);
-        Glide.with(mContext).asBitmap().load(images[position]).into(holder.ivImage);
+        Glide.with(fragment).load(images[position]).apply(options).into(holder.ivImage);
         return convertView;
     }
 

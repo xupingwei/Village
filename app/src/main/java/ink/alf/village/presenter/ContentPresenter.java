@@ -7,7 +7,7 @@ import com.alibaba.fastjson.JSON;
 import java.util.HashMap;
 import java.util.Map;
 
-import ink.alf.village.bean.ActivitiPagerInfo;
+import ink.alf.village.bean.vo.ActivitiPagerInfo;
 import ink.alf.village.retrofit.RetrofitClient;
 import ink.alf.village.retrofit.subscriber.ApiCallback;
 import ink.alf.village.retrofit.subscriber.SchedulersCompat;

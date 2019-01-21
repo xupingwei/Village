@@ -1,9 +1,6 @@
 package ink.alf.village.view;
 
-import java.util.List;
-
-import ink.alf.village.bean.ActivitiBean;
-import ink.alf.village.bean.ActivitiPagerInfo;
+import ink.alf.village.bean.vo.ActivitiPagerInfo;
 
 public interface IContentView {
 

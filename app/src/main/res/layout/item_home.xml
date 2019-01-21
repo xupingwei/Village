@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    android:orientation="vertical"
-    tools:ignore="HardcodedText,SmallSp">
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -95,17 +93,21 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
         android:lineHeight="18dp"
         android:id="@+id/tv_content"
         android:textColor="@color/colorDarkGrey"
         android:textSize="@dimen/text12" />
 
-    <ink.alf.village.widget.MyListView
+    <ink.alf.village.widget.MyGridView
         android:id="@+id/lv_images"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:divider="@null" />
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:numColumns="3"
+        android:verticalSpacing="5dp" />
 
     <LinearLayout
         android:layout_width="match_parent"

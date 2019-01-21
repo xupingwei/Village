@@ -1,7 +1,9 @@
-package ink.alf.village.bean;
+package ink.alf.village.bean.vo;
 
 import java.io.Serializable;
 import java.util.List;
+
+import ink.alf.village.bean.ActivitiBean;
 
 /**
  * @author 13793

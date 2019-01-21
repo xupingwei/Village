@@ -20,7 +20,7 @@ import butterknife.Unbinder;
 import ink.alf.village.R;
 import ink.alf.village.base.BaseFragment;
 import ink.alf.village.bean.ActivitiBean;
-import ink.alf.village.bean.ActivitiPagerInfo;
+import ink.alf.village.bean.vo.ActivitiPagerInfo;
 import ink.alf.village.presenter.ContentPresenter;
 import ink.alf.village.ui.ContentAdapter;
 import ink.alf.village.utils.ToastUtils;
@@ -81,7 +81,7 @@ public class FragmentContent extends BaseFragment implements IContentView, Swipe
         refreshLayout.setOnRefreshListener(this);
 
         //
-        contentAdapter = new ContentAdapter(getActivity(), mainActivitiBeans);
+        contentAdapter = new ContentAdapter(getActivity(), mainActivitiBeans, this);
     }
 
     @Override

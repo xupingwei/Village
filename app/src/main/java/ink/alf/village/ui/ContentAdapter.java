@@ -1,12 +1,12 @@
 package ink.alf.village.ui;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.angel.view.SWImageView;
@@ -18,6 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ink.alf.village.R;
 import ink.alf.village.bean.ActivitiBean;
+import ink.alf.village.widget.MyGridView;
 
 /**
  * @author 13793
@@ -28,10 +29,12 @@ public class ContentAdapter extends BaseAdapter {
 
     private Context mContext;
     private List<ActivitiBean> activitiBeans;
+    private Fragment fragment;
 
-    public ContentAdapter(Context mContext, List<ActivitiBean> activitiBeans) {
+    public ContentAdapter(Context mContext, List<ActivitiBean> activitiBeans, Fragment fragment) {
         this.mContext = mContext;
         this.activitiBeans = activitiBeans;
+        this.fragment = fragment;
     }
 
     @Override
@@ -68,8 +71,8 @@ public class ContentAdapter extends BaseAdapter {
         holder.tvFollow.setText(bean.getFollow() + "");
         holder.tvCollect.setText(bean.getCollect() + "");
         String[] images = bean.getContentImages().split(",");
-        ImageAdapter imageAdapter = new ImageAdapter(images, mContext);
-        holder.lvImages.setAdapter(imageAdapter);
+        ImageAdapter imageAdapter = new ImageAdapter(images, mContext, fragment);
+        holder.gvImages.setAdapter(imageAdapter);
         return convertView;
     }
 
@@ -85,7 +88,7 @@ public class ContentAdapter extends BaseAdapter {
         @BindView(R.id.tv_catagory)
         TextView tvCatagory;
         @BindView(R.id.lv_images)
-        ListView lvImages;
+        MyGridView gvImages;
         @BindView(R.id.tv_content)
         TextView tvContent;
         @BindView(R.id.tv_follow)
