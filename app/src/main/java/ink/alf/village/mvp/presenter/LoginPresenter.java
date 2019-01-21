@@ -7,11 +7,11 @@ import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import ink.alf.village.common.MainConstants;
 import ink.alf.village.base.BaseApplication;
 import ink.alf.village.bean.MessageEvent;
-import ink.alf.village.utils.DialogUtils;
+import ink.alf.village.common.MainConstants;
 import ink.alf.village.mvp.view.ILoginView;
+import ink.alf.village.utils.DialogUtils;
 
 /**
  * @author 13793
@@ -30,7 +30,7 @@ public class LoginPresenter {
 
     public void wxLogin() {
 
-        DialogUtils.getInstance(mContext).show();
+        DialogUtils.show(mContext);
 
         if (!BaseApplication.iwxapi.isWXAppInstalled()) {
             iLoginView.wxLoginFailed("您还未安装微信客户端", -40011);

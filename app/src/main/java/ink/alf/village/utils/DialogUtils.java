@@ -12,16 +12,13 @@ public class DialogUtils {
     private DialogUtils() {
     }
 
-    public static synchronized LoadingDailog getInstance(Context context) {
-
-        if (loadingDailog == null) {
-            LoadingDailog.Builder loadBuilder = new LoadingDailog.Builder(context)
-                    .setMessage("加载中...")
-                    .setCancelable(true)
-                    .setCancelOutside(true);
-            loadingDailog = loadBuilder.create();
-        }
-        return loadingDailog;
+    public static void show(Context context) {
+        LoadingDailog.Builder loadBuilder = new LoadingDailog.Builder(context)
+                .setMessage("加载中...")
+                .setCancelable(true)
+                .setCancelOutside(true);
+        loadingDailog = loadBuilder.create();
+        loadingDailog.show();
     }
 
     public static void dimiss() {

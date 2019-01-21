@@ -74,6 +74,7 @@
                 android:drawableLeft="@mipmap/icon_refresh"
                 android:drawablePadding="10dp"
                 android:gravity="center_vertical"
+                android:clickable="true"
                 android:text="重新定位"
                 android:textColor="@color/colorDarkBlack"
                 android:textSize="@dimen/text14" />

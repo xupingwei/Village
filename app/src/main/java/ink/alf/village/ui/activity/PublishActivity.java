@@ -32,12 +32,12 @@ import ink.alf.village.bean.ActivitiBean;
 import ink.alf.village.common.CatagoryType;
 import ink.alf.village.common.GifSizeFilter;
 import ink.alf.village.mvp.presenter.PublishPresenter;
+import ink.alf.village.mvp.view.IPublishView;
 import ink.alf.village.ui.ImageAddAdapter;
 import ink.alf.village.utils.DialogUtils;
 import ink.alf.village.utils.FileUtils;
 import ink.alf.village.utils.SharedPreferencesHelper;
 import ink.alf.village.utils.ToastUtils;
-import ink.alf.village.mvp.view.IPublishView;
 import ink.alf.village.widget.ActionSheet;
 import ink.alf.village.widget.GridSpacingItemDecoration;
 
@@ -171,7 +171,7 @@ public class PublishActivity extends BaseActivity implements IPublishView {
         pushActiviti.setAddress(address);
         List<Uri> uris = imageAddAdapter.getImageLists();
         //开始请求,创建activiti
-        DialogUtils.getInstance(this).show();
+        DialogUtils.show(this);
         if (uris.size() == 0) {
             publishPresenter.createActiviti(getToken(), pushActiviti);
         } else {
@@ -237,20 +237,20 @@ public class PublishActivity extends BaseActivity implements IPublishView {
 
     @Override
     public void uploadImageFailure(String message, int errorCode) {
-        DialogUtils.getInstance(this).dismiss();
+        DialogUtils.dimiss();
         ToastUtils.showToast(this, message);
     }
 
     @Override
     public void insertActivitiSuccess() {
-        DialogUtils.getInstance(this).dismiss();
+        DialogUtils.dimiss();
         ToastUtils.showToast(this, "发布成功");
         this.finish();
     }
 
     @Override
     public void insertActivitiFailure(String message, int code) {
-        DialogUtils.getInstance(this).dismiss();
+        DialogUtils.dimiss();
         ToastUtils.showToast(this, message);
     }
 }

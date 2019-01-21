@@ -69,4 +69,5 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
     implementation 'com.zhihu.android:matisse:0.5.2-beta4'
     implementation 'com.qiniu:qiniu-android-sdk:7.3.13'
+    implementation 'com.jchou.android.imagereview:imagereview:1.0.1'
 }
