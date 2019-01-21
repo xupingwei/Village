@@ -25,6 +25,7 @@
     <string name="cancel">取消</string>
     <string name="share_new_things">分享新鲜事</string>
     <string name="internal_storage">内部存储</string>
+    <string name="viewpager_indicator">%1$d/%2$d</string>
     <!--other-->
     <string name="error_gif">x or y bound size should be at least %1$dpx and file size should be no more than %2$sM</string>
 </resources>

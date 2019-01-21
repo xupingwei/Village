@@ -41,7 +41,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
-        tools:replace="android:icon">
+        tools:replace="icon,label,theme,allowBackup">
         <activity
             android:name=".ui.activity.MainActivity"
             android:launchMode="singleTask"
@@ -68,6 +68,9 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.activity.SelectAreaActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.activity.ImagePagerActivity"
             android:theme="@style/AppTheme" />
 
         <service

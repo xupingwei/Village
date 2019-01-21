@@ -1,6 +1,7 @@
 package ink.alf.village.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +13,15 @@ import android.widget.TextView;
 import com.angel.view.SWImageView;
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ink.alf.village.R;
 import ink.alf.village.bean.ActivitiBean;
+import ink.alf.village.ui.activity.ImagePagerActivity;
 import ink.alf.village.widget.MyGridView;
 
 /**
@@ -73,7 +77,19 @@ public class ContentAdapter extends BaseAdapter {
         String[] images = bean.getContentImages().split(",");
         ImageAdapter imageAdapter = new ImageAdapter(images, mContext, fragment);
         holder.gvImages.setAdapter(imageAdapter);
+        holder.gvImages.setOnItemClickListener((parent1, view, position1, id) -> {
+            ArrayList<String> imageUrls = new ArrayList<>(Arrays.asList(images));
+            imageBrower(position1, imageUrls);
+        });
         return convertView;
+    }
+
+    protected void imageBrower(int position, ArrayList<String> urls2) {
+        Intent intent = new Intent(mContext, ImagePagerActivity.class);
+        // 图片url,为了演示这里使用常量，一般从数据库中或网络中获取
+        intent.putExtra(ImagePagerActivity.EXTRA_IMAGE_URLS, urls2);
+        intent.putExtra(ImagePagerActivity.EXTRA_IMAGE_INDEX, position);
+        mContext.startActivity(intent);
     }
 
     static class ViewHolder {
