@@ -8,18 +8,18 @@ import java.io.Serializable;
  * @author 13793
  * 活动
  * {
- *         "content": "图片图",
- *         "follow": 0,
- *         "collect": 0,
- *         "catagory": "问事",
- *         "contentImages": "http://images.xaolaf.com/bbd697a19a5fd28fca46971a3105ab36",
- *         "salt": "THING",
- *         "headUrl": "http://images.xaolaf.com/7d2fd7d75bb9913f76cba43967e4d9fc",
- *         "createTime": "2019-01-18T08:09:48.000+0000",
- *         "address": "北京市海淀区中关村大街",
- *         "pushNickName": "Jone",
- *         "pushUserId": "40289ecc67cfcfb10167cfd8ca370000"
- *       }
+ * "content": "图片图",
+ * "follow": 0,
+ * "collect": 0,
+ * "catagory": "问事",
+ * "contentImages": "http://images.xaolaf.com/bbd697a19a5fd28fca46971a3105ab36",
+ * "salt": "THING",
+ * "headUrl": "http://images.xaolaf.com/7d2fd7d75bb9913f76cba43967e4d9fc",
+ * "createTime": "2019-01-18T08:09:48.000+0000",
+ * "address": "北京市海淀区中关村大街",
+ * "pushNickName": "Jone",
+ * "pushUserId": "40289ecc67cfcfb10167cfd8ca370000"
+ * }
  */
 public class ActivitiBean implements Serializable {
     private String headUrl;
@@ -46,8 +46,28 @@ public class ActivitiBean implements Serializable {
      * 标签，以逗号隔开如：“VEHICLE，PERSON，THING”
      */
     private String salt;
+    //点赞用户列表
+    private String followUserIds;
+    //收藏用户列表
+    private String collectUserIds;
 
     public ActivitiBean() {
+    }
+
+    public String getFollowUserIds() {
+        return followUserIds;
+    }
+
+    public void setFollowUserIds(String followUserIds) {
+        this.followUserIds = followUserIds;
+    }
+
+    public String getCollectUserIds() {
+        return collectUserIds;
+    }
+
+    public void setCollectUserIds(String collectUserIds) {
+        this.collectUserIds = collectUserIds;
     }
 
     public String getCatagory() {

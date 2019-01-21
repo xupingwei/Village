@@ -79,6 +79,12 @@ public class ContentAdapter extends RecyclerView.Adapter {
             ArrayList<String> imageUrls = new ArrayList<>(Arrays.asList(images));
             imageBrower(position1, imageUrls);
         });
+        holder.ivFollow.setOnClickListener(v -> {
+            holder.ivFollow.setBackgroundResource(R.mipmap.ic_follow);
+        });
+        holder.ivCollect.setOnClickListener(v -> {
+            holder.ivCollect.setBackgroundResource(R.mipmap.ic_collect);
+        });
     }
 
     @Override
@@ -118,10 +124,16 @@ public class ContentAdapter extends RecyclerView.Adapter {
         TextView tvFollow;
         @BindView(R.id.tv_collect)
         TextView tvCollect;
+        @BindView(R.id.iv_follow)
+        ImageView ivFollow;
+        @BindView(R.id.iv_collect)
+        ImageView ivCollect;
 
         public ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
         }
     }
+
+
 }
