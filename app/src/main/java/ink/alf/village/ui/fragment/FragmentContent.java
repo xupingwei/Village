@@ -5,11 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +23,8 @@ import ink.alf.village.base.BaseFragment;
 import ink.alf.village.bean.ActivitiBean;
 import ink.alf.village.bean.vo.ActivitiPagerInfo;
 import ink.alf.village.mvp.presenter.ContentPresenter;
-import ink.alf.village.ui.ContentAdapter;
-import ink.alf.village.utils.ToastUtils;
 import ink.alf.village.mvp.view.IContentView;
+import ink.alf.village.ui.ContentAdapter;
 
 /**
  * @author 13793
@@ -36,8 +36,8 @@ public class FragmentContent extends BaseFragment implements IContentView, Swipe
 
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout refreshLayout;
-    @BindView(R.id.lv_home)
-    ListView lvHome;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
 
     private ContentPresenter contentPresenter;
 
@@ -81,7 +81,9 @@ public class FragmentContent extends BaseFragment implements IContentView, Swipe
         refreshLayout.setOnRefreshListener(this);
 
         //
-        contentAdapter = new ContentAdapter(getActivity(), mainActivitiBeans, this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
+        contentAdapter = new ContentAdapter(getActivity(), this);
+        recyclerView.setAdapter(contentAdapter);
     }
 
     @Override
@@ -103,16 +105,9 @@ public class FragmentContent extends BaseFragment implements IContentView, Swipe
             refreshLayout.setRefreshing(false);
         }
         if (currPage == 0) {
-            mainActivitiBeans.clear();
-            mainActivitiBeans.addAll(pagerInfo.getLists());
+            contentAdapter.reset(pagerInfo.getLists());
         } else {
-            mainActivitiBeans.addAll(pagerInfo.getLists());
-        }
-        contentAdapter.notifyDataSetChanged();
-        if (null != lvHome) {
-            lvHome.setAdapter(contentAdapter);
-            lvHome.setOnItemClickListener((parent, view, position, id) ->
-                    ToastUtils.showToast(getActivity(), "position = " + position));
+            contentAdapter.addDatas(pagerInfo.getLists());
         }
         currPage = pagerInfo.getPage() + 1;
     }

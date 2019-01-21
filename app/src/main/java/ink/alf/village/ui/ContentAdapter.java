@@ -2,11 +2,12 @@ package ink.alf.village.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,46 +28,43 @@ import ink.alf.village.widget.MyGridView;
 /**
  * @author 13793
  */
-public class ContentAdapter extends BaseAdapter {
+public class ContentAdapter extends RecyclerView.Adapter {
 
     private static final String TAG = "ContentAdapter";
 
     private Context mContext;
-    private List<ActivitiBean> activitiBeans;
+    private List<ActivitiBean> activitiBeans = new ArrayList<>();
     private Fragment fragment;
 
-    public ContentAdapter(Context mContext, List<ActivitiBean> activitiBeans, Fragment fragment) {
+    public ContentAdapter(Context mContext, Fragment fragment) {
         this.mContext = mContext;
-        this.activitiBeans = activitiBeans;
         this.fragment = fragment;
     }
 
+    public void reset(List<ActivitiBean> activitiBeans) {
+        this.activitiBeans.clear();
+        this.activitiBeans.addAll(activitiBeans);
+        this.notifyDataSetChanged();
+    }
+
+    public void addDatas(List<ActivitiBean> beans) {
+        this.activitiBeans.addAll(beans);
+        this.notifyDataSetChanged();
+    }
+
+    @NonNull
     @Override
-    public int getCount() {
-        return activitiBeans.size();
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View convertView = LayoutInflater.from(mContext).inflate(R.layout.item_home, viewGroup, false);
+        ViewHolder holder = new ViewHolder(convertView);
+        return holder;
     }
 
     @Override
-    public Object getItem(int position) {
-        return activitiBeans.get(position);
-    }
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder = null;
-        if (null == holder) {
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_home, null);
-            holder = new ViewHolder(convertView);
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-        }
-        ActivitiBean bean = activitiBeans.get(position);
+        ViewHolder holder = (ViewHolder) viewHolder;
+        ActivitiBean bean = activitiBeans.get(i);
         holder.tvUserName.setText(bean.getPushNickName());
         holder.tvPushTime.setText(bean.getCreateTime() + "");
         holder.tvCatagory.setText(bean.getCatagory());
@@ -81,7 +79,16 @@ public class ContentAdapter extends BaseAdapter {
             ArrayList<String> imageUrls = new ArrayList<>(Arrays.asList(images));
             imageBrower(position1, imageUrls);
         });
-        return convertView;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemCount() {
+        return activitiBeans.size();
     }
 
     protected void imageBrower(int position, ArrayList<String> urls2) {
@@ -92,7 +99,7 @@ public class ContentAdapter extends BaseAdapter {
         mContext.startActivity(intent);
     }
 
-    static class ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.iv_user_avatar)
         SWImageView ivUserAvatar;
         @BindView(R.id.tv_user_name)
@@ -112,7 +119,8 @@ public class ContentAdapter extends BaseAdapter {
         @BindView(R.id.tv_collect)
         TextView tvCollect;
 
-        ViewHolder(View view) {
+        public ViewHolder(View view) {
+            super(view);
             ButterKnife.bind(this, view);
         }
     }
