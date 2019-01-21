@@ -1,10 +1,6 @@
-package ink.alf.village.view;
+package ink.alf.village.mvp.view;
 
 import com.baidu.location.BDLocation;
-
-import java.util.List;
-
-import ink.alf.village.bean.ActivitiBean;
 
 public interface IHomeView {
 

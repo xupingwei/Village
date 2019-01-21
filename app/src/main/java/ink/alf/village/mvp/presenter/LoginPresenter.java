@@ -1,4 +1,4 @@
-package ink.alf.village.presenter;
+package ink.alf.village.mvp.presenter;
 
 import android.content.Context;
 
@@ -11,7 +11,7 @@ import ink.alf.village.common.MainConstants;
 import ink.alf.village.base.BaseApplication;
 import ink.alf.village.bean.MessageEvent;
 import ink.alf.village.utils.DialogUtils;
-import ink.alf.village.view.ILoginView;
+import ink.alf.village.mvp.view.ILoginView;
 
 /**
  * @author 13793

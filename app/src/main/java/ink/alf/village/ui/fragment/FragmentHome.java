@@ -29,13 +29,13 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import ink.alf.village.R;
 import ink.alf.village.common.MainConstants;
-import ink.alf.village.presenter.HomePresenter;
+import ink.alf.village.mvp.presenter.HomePresenter;
 import ink.alf.village.ui.HomePagerAdapter;
 import ink.alf.village.ui.activity.SelectAreaActivity;
 import ink.alf.village.utils.PermissionsUtils;
 import ink.alf.village.utils.SharedPreferencesHelper;
 import ink.alf.village.utils.ToastUtils;
-import ink.alf.village.view.IHomeView;
+import ink.alf.village.mvp.view.IHomeView;
 
 /**
  * @author 13793

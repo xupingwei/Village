@@ -1,4 +1,4 @@
-package ink.alf.village.presenter;
+package ink.alf.village.mvp.presenter;
 
 import android.content.Context;
 
@@ -11,8 +11,8 @@ import ink.alf.village.bean.vo.ActivitiPagerInfo;
 import ink.alf.village.retrofit.RetrofitClient;
 import ink.alf.village.retrofit.subscriber.ApiCallback;
 import ink.alf.village.retrofit.subscriber.SchedulersCompat;
-import ink.alf.village.service.IMainService;
-import ink.alf.village.view.IContentView;
+import ink.alf.village.mvp.service.IActivitiService;
+import ink.alf.village.mvp.view.IContentView;
 
 /**
  * @author 13793
@@ -32,7 +32,7 @@ public class ContentPresenter {
         mapValus.put("token", token);
         mapValus.put("page", page);
         mapValus.put("pageCount", pageCount);
-        RetrofitClient.getRetrofit().create(IMainService.class).listNewer(mapValus)
+        RetrofitClient.getRetrofit().create(IActivitiService.class).listNewer(mapValus)
                 .compose(SchedulersCompat.applyIoSchedulers())
                 .subscribe(new ApiCallback(mContext) {
                     @Override

@@ -1,17 +1,10 @@
-package ink.alf.village.presenter;
+package ink.alf.village.mvp.presenter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import ink.alf.village.bean.ActivitiBean;
 import ink.alf.village.utils.BaiduLocUtils;
-import ink.alf.village.view.IHomeView;
+import ink.alf.village.mvp.view.IHomeView;
 
 /**
  * @author 13793

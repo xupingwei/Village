@@ -1,4 +1,4 @@
-package ink.alf.village.service;
+package ink.alf.village.mvp.service;
 
 import java.util.Map;
 
@@ -9,7 +9,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
-public interface IMainService {
+public interface IActivitiService {
 
     @POST("/activiti/create")
     @FormUrlEncoded
@@ -23,4 +23,5 @@ public interface IMainService {
     @POST("/activiti/listNewer")
     @FormUrlEncoded
     Observable<ResponseBody> listNewer(@FieldMap Map<String, Object> bean);
+
 }

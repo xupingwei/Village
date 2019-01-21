@@ -1,8 +1,6 @@
 package ink.alf.village.ui.activity;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -39,9 +37,9 @@ public class SelectAreaActivity extends BaseActivity {
     protected void initView(Bundle savedInstanceState) {
         ivBack.setOnClickListener(v -> this.finish());
         tvRefreshLocation.setOnClickListener(v -> ToastUtils.showToast(this, "重新定位"));
-        gvArea.setAdapter(new AreaAdapter(this, MainConstants.CITIES));
-        gvArea.setOnItemClickListener((parent, view, position, id) ->
-                ToastUtils.showToast(this, MainConstants.CITIES[position]));
+//        gvArea.setAdapter(new AreaAdapter(this, MainConstants.CITIES));
+//        gvArea.setOnItemClickListener((parent, view, position, id) ->
+//                ToastUtils.showToast(this, MainConstants.CITIES[position]));
     }
 
 }

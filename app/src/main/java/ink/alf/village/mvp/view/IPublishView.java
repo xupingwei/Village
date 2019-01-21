@@ -1,4 +1,4 @@
-package ink.alf.village.view;
+package ink.alf.village.mvp.view;
 
 /**
  * @author 13793

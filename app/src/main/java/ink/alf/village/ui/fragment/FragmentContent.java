@@ -21,10 +21,10 @@ import ink.alf.village.R;
 import ink.alf.village.base.BaseFragment;
 import ink.alf.village.bean.ActivitiBean;
 import ink.alf.village.bean.vo.ActivitiPagerInfo;
-import ink.alf.village.presenter.ContentPresenter;
+import ink.alf.village.mvp.presenter.ContentPresenter;
 import ink.alf.village.ui.ContentAdapter;
 import ink.alf.village.utils.ToastUtils;
-import ink.alf.village.view.IContentView;
+import ink.alf.village.mvp.view.IContentView;
 
 /**
  * @author 13793

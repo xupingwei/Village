@@ -12,10 +12,10 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import ink.alf.village.R;
 import ink.alf.village.base.BaseActivity;
-import ink.alf.village.presenter.LoginPresenter;
+import ink.alf.village.mvp.presenter.LoginPresenter;
 import ink.alf.village.utils.BlurUtils;
 import ink.alf.village.utils.ToastUtils;
-import ink.alf.village.view.ILoginView;
+import ink.alf.village.mvp.view.ILoginView;
 import ink.alf.village.widget.IconfontTextView;
 
 /**

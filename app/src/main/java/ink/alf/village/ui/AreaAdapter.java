@@ -7,9 +7,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ink.alf.village.R;
+import ink.alf.village.bean.Region;
 
 /**
  * @author 13793
@@ -17,21 +20,21 @@ import ink.alf.village.R;
 public class AreaAdapter extends BaseAdapter {
 
     private Context mContext;
-    private String[] cities;
+    private List<Region> regions;
 
-    public AreaAdapter(Context mContext, String[] cities) {
+    public AreaAdapter(Context mContext, List<Region> regions) {
         this.mContext = mContext;
-        this.cities = cities;
+        this.regions = regions;
     }
 
     @Override
     public int getCount() {
-        return cities.length;
+        return regions.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return cities[position];
+        return regions.get(position);
     }
 
     @Override
@@ -50,7 +53,7 @@ public class AreaAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.itemTvArea.setText(cities[position]);
+        holder.itemTvArea.setText(regions.get(position).getDistrict());
         return convertView;
     }
 

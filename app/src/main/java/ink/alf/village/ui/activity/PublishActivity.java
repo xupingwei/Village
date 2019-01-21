@@ -31,13 +31,13 @@ import ink.alf.village.base.MyGlideEngine;
 import ink.alf.village.bean.ActivitiBean;
 import ink.alf.village.common.CatagoryType;
 import ink.alf.village.common.GifSizeFilter;
-import ink.alf.village.presenter.PublishPresenter;
+import ink.alf.village.mvp.presenter.PublishPresenter;
 import ink.alf.village.ui.ImageAddAdapter;
 import ink.alf.village.utils.DialogUtils;
 import ink.alf.village.utils.FileUtils;
 import ink.alf.village.utils.SharedPreferencesHelper;
 import ink.alf.village.utils.ToastUtils;
-import ink.alf.village.view.IPublishView;
+import ink.alf.village.mvp.view.IPublishView;
 import ink.alf.village.widget.ActionSheet;
 import ink.alf.village.widget.GridSpacingItemDecoration;
 

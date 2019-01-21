@@ -1,4 +1,4 @@
-package ink.alf.village.presenter;
+package ink.alf.village.mvp.presenter;
 
 import android.content.Context;
 import android.util.Log;
@@ -14,9 +14,9 @@ import ink.alf.village.listener.UploadMutliListener;
 import ink.alf.village.retrofit.RetrofitClient;
 import ink.alf.village.retrofit.subscriber.ApiCallback;
 import ink.alf.village.retrofit.subscriber.SchedulersCompat;
-import ink.alf.village.service.IMainService;
+import ink.alf.village.mvp.service.IActivitiService;
 import ink.alf.village.utils.QiniuUploadHelper;
-import ink.alf.village.view.IPublishView;
+import ink.alf.village.mvp.view.IPublishView;
 
 /**
  * @author 13793
@@ -64,7 +64,7 @@ public class PublishPresenter {
         mapValus.put("images", bean.getContentImages());
         mapValus.put("salt", bean.getSalt());
         mapValus.put("address", bean.getAddress());
-        RetrofitClient.getRetrofit().create(IMainService.class).createActiviti(token, mapValus)
+        RetrofitClient.getRetrofit().create(IActivitiService.class).createActiviti(token, mapValus)
                 .compose(SchedulersCompat.applyIoSchedulers())
                 .subscribe(new ApiCallback(mContext) {
                     @Override
