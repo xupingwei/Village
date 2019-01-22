@@ -28,6 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import ink.alf.village.R;
+import ink.alf.village.base.BaseFragment;
 import ink.alf.village.common.MainConstants;
 import ink.alf.village.mvp.presenter.HomePresenter;
 import ink.alf.village.ui.HomePagerAdapter;
@@ -41,7 +42,7 @@ import ink.alf.village.mvp.view.IHomeView;
  * @author 13793
  */
 @SuppressLint("ValidFragment")
-public class FragmentHome extends Fragment implements IHomeView {
+public class FragmentHome extends BaseFragment implements IHomeView {
 
     private static final String TAG = "FragmentHome";
 

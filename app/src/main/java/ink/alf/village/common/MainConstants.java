@@ -15,21 +15,12 @@ public class MainConstants {
 
 
     public static Map<String, String> TABS = new HashMap<>();
-    public static Map<String, String> DISTANCE = new HashMap<>();
-    public static String[] CITIES = new String[]{
-            "西安", "雁塔区", "新城区", "长安区", "未央区", "西咸新区", "高新区"
-    };
 
     static {
         TABS.put("RECOMMEND", "推荐");
         TABS.put("NEW", "最新");
-        TABS.put("HOT", "热门");
         TABS.put("VEHICLE", "交通工具");
         TABS.put("PERSON", "村里人");
         TABS.put("THING", "村里事");
-        //distance
-        DISTANCE.put("2KM", "2km内");
-        DISTANCE.put("5KM", "5km内");
-        DISTANCE.put("10KM", "10km内");
     }
 }

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.angel.view.SWImageView;
 import com.bumptech.glide.Glide;
 
@@ -22,7 +23,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ink.alf.village.R;
 import ink.alf.village.bean.ActivitiBean;
+import ink.alf.village.listener.IOperationOnClickListener;
 import ink.alf.village.ui.activity.ImagePagerActivity;
+import ink.alf.village.utils.DateUtils;
 import ink.alf.village.widget.MyGridView;
 
 /**
@@ -35,10 +38,17 @@ public class ContentAdapter extends RecyclerView.Adapter {
     private Context mContext;
     private List<ActivitiBean> activitiBeans = new ArrayList<>();
     private Fragment fragment;
+    private String userId;
+    private IOperationOnClickListener iOperationOnClickListener;
 
-    public ContentAdapter(Context mContext, Fragment fragment) {
+    public ContentAdapter(Context mContext, String userId, Fragment fragment) {
         this.mContext = mContext;
         this.fragment = fragment;
+        this.userId = userId;
+    }
+
+    public List<ActivitiBean> getActivitiBeans() {
+        return activitiBeans;
     }
 
     public void reset(List<ActivitiBean> activitiBeans) {
@@ -66,7 +76,7 @@ public class ContentAdapter extends RecyclerView.Adapter {
         ViewHolder holder = (ViewHolder) viewHolder;
         ActivitiBean bean = activitiBeans.get(i);
         holder.tvUserName.setText(bean.getPushNickName());
-        holder.tvPushTime.setText(bean.getCreateTime() + "");
+        holder.tvPushTime.setText(DateUtils.dateToString(bean.getCreateTime(), DateUtils.DATATIME_FORMMATER));
         holder.tvCatagory.setText(bean.getCatagory());
         Glide.with(mContext).asBitmap().load(bean.getHeadUrl()).into(holder.ivUserAvatar);
         holder.tvContent.setText(bean.getContent());
@@ -79,11 +89,31 @@ public class ContentAdapter extends RecyclerView.Adapter {
             ArrayList<String> imageUrls = new ArrayList<>(Arrays.asList(images));
             imageBrower(position1, imageUrls);
         });
-        holder.ivFollow.setOnClickListener(v -> {
+
+        List<String> followIds = JSON.parseArray(bean.getFollowUserIds(), String.class);
+        List<String> collectIds = JSON.parseArray(bean.getCollectUserIds(), String.class);
+
+        if (null != followIds && followIds.contains(userId)) {
             holder.ivFollow.setBackgroundResource(R.mipmap.ic_follow);
+        } else {
+            holder.ivFollow.setBackgroundResource(R.mipmap.ic_unfollow);
+        }
+
+        if (null != collectIds && collectIds.contains(userId)) {
+            holder.ivCollect.setBackgroundResource(R.mipmap.ic_collect);
+        } else {
+            holder.ivCollect.setBackgroundResource(R.mipmap.ic_uncollect);
+        }
+
+        holder.ivFollow.setOnClickListener(v -> {
+            if (null != iOperationOnClickListener) {
+                iOperationOnClickListener.onFollowClickListener(followIds, userId, i);
+            }
         });
         holder.ivCollect.setOnClickListener(v -> {
-            holder.ivCollect.setBackgroundResource(R.mipmap.ic_collect);
+            if (null != iOperationOnClickListener) {
+                iOperationOnClickListener.onCollectClickListener(collectIds, userId, i);
+            }
         });
     }
 
@@ -135,5 +165,8 @@ public class ContentAdapter extends RecyclerView.Adapter {
         }
     }
 
+    public void setOperationOnClickListener(IOperationOnClickListener iOperationOnClickListener) {
+        this.iOperationOnClickListener = iOperationOnClickListener;
+    }
 
 }

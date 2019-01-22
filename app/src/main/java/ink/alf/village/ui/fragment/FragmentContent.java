@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alibaba.fastjson.JSON;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +24,7 @@ import ink.alf.village.R;
 import ink.alf.village.base.BaseFragment;
 import ink.alf.village.bean.ActivitiBean;
 import ink.alf.village.bean.vo.ActivitiPagerInfo;
+import ink.alf.village.listener.IOperationOnClickListener;
 import ink.alf.village.mvp.presenter.ContentPresenter;
 import ink.alf.village.mvp.view.IContentView;
 import ink.alf.village.ui.ContentAdapter;
@@ -40,6 +43,7 @@ public class FragmentContent extends BaseFragment implements IContentView, Swipe
     RecyclerView recyclerView;
 
     private ContentPresenter contentPresenter;
+    private String userId;
 
 
     private List<ActivitiBean> mainActivitiBeans = new ArrayList<>();
@@ -79,11 +83,49 @@ public class FragmentContent extends BaseFragment implements IContentView, Swipe
         refreshLayout.setRefreshing(true);
         contentPresenter.loadNewerData(getToken(), currPage, pageCount);
         refreshLayout.setOnRefreshListener(this);
-
+        userId = getUserInfo().getId();
         //
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
-        contentAdapter = new ContentAdapter(getActivity(), this);
+        contentAdapter = new ContentAdapter(getActivity(), userId, this);
         recyclerView.setAdapter(contentAdapter);
+        contentAdapter.setOperationOnClickListener(new IOperationOnClickListener() {
+            @Override
+            public void onFollowClickListener(List<String> followIds, String userId, int position) {
+                List<ActivitiBean> beans = contentAdapter.getActivitiBeans();
+                if (followIds == null) {
+                    followIds = new ArrayList<>();
+                }
+                int f = beans.get(position).getFollow();
+                if (followIds.contains(userId)) {
+                    followIds.remove(userId);
+                    beans.get(position).setFollow((f - 1) < 0 ? 0 : f - 1);
+                } else {
+                    followIds.add(userId);
+                    beans.get(position).setFollow(f + 1);
+                }
+                beans.get(position).setFollowUserIds(JSON.toJSONString(followIds));
+                Log.d(TAG, "onFollowClickListener: " + JSON.toJSONString(beans));
+                contentAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCollectClickListener(List<String> collectIds, String userId, int position) {
+                List<ActivitiBean> beans = contentAdapter.getActivitiBeans();
+                if (null == collectIds) {
+                    collectIds = new ArrayList<>();
+                }
+                int c = beans.get(position).getCollect();
+                if (collectIds.contains(userId)) {
+                    collectIds.remove(userId);
+                    beans.get(position).setCollect((c - 1) < 0 ? 0 : c - 1);
+                } else {
+                    collectIds.add(userId);
+                    beans.get(position).setCollect(c + 1);
+                }
+                beans.get(position).setCollectUserIds(JSON.toJSONString(collectIds));
+                contentAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override

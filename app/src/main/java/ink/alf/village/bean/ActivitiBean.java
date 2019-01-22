@@ -1,8 +1,7 @@
 package ink.alf.village.bean;
 
-import com.alibaba.fastjson.annotation.JSONField;
-
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author 13793
@@ -24,8 +23,8 @@ import java.io.Serializable;
 public class ActivitiBean implements Serializable {
     private String headUrl;
     private String pushNickName;
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
-    private String createTime;
+
+    private Date createTime;
     private String address;
 
     /**
@@ -144,11 +143,11 @@ public class ActivitiBean implements Serializable {
         this.pushNickName = pushNickName;
     }
 
-    public String getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 

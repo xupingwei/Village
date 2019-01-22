@@ -167,7 +167,7 @@ public class PublishActivity extends BaseActivity implements IPublishView {
         }
 
         SharedPreferencesHelper preferencesHelper = new SharedPreferencesHelper(this);
-        String address = (String) preferencesHelper.getValueForKey("address", "西安");
+        String address = (String) preferencesHelper.getValueForKey("address", "陝西省西安市");
         pushActiviti.setAddress(address);
         List<Uri> uris = imageAddAdapter.getImageLists();
         //开始请求,创建activiti
