@@ -22,6 +22,7 @@ import butterknife.Unbinder;
 import ink.alf.village.R;
 import ink.alf.village.bean.ActivitiBean;
 import ink.alf.village.bean.vo.ActivitiPagerInfo;
+import ink.alf.village.listener.EndlessRecyclerOnScrollListener;
 import ink.alf.village.listener.IOperationOnClickListener;
 import ink.alf.village.mvp.presenter.ContentPresenter;
 import ink.alf.village.mvp.view.IContentView;
@@ -48,6 +49,7 @@ public class FragmentContent extends BaseLazyLoadFragment implements IContentVie
     private ContentAdapter contentAdapter;
     private int currPage = 0;
     private int pageCount = 10;
+    private boolean isLoadMore = true;
 
     private String reqKey = "";
 
@@ -129,6 +131,17 @@ public class FragmentContent extends BaseLazyLoadFragment implements IContentVie
                 contentPresenter.collect(userId, beans.get(position).getId(), collect);
             }
         });
+
+        recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener() {
+            @Override
+            public void onLoadMore() {
+                if (isLoadMore) {
+                    contentAdapter.setLoadState(contentAdapter.LOADING);
+                    Log.d(TAG, "loadMainDataSuccess: currPage = " + currPage);
+                    contentPresenter.listCatagory(getToken(), reqKey, currPage, pageCount);
+                }
+            }
+        });
     }
 
     @Override
@@ -148,6 +161,7 @@ public class FragmentContent extends BaseLazyLoadFragment implements IContentVie
     @Override
     public void onRefresh() {
         currPage = 0;
+        isLoadMore = true;
         contentPresenter.listCatagory(getToken(), reqKey, currPage, 10);
     }
 
@@ -156,11 +170,18 @@ public class FragmentContent extends BaseLazyLoadFragment implements IContentVie
     public void loadMainDataSuccess(ActivitiPagerInfo pagerInfo) {
         if (null != refreshLayout && refreshLayout.isRefreshing()) {
             refreshLayout.setRefreshing(false);
-            if (currPage == 0) {
-                contentAdapter.reset(pagerInfo.getLists());
-            } else {
-                contentAdapter.addDatas(pagerInfo.getLists());
-            }
+        }
+        if (currPage == 0) {
+            contentAdapter.reset(pagerInfo.getLists());
+        } else {
+            contentAdapter.addDatas(pagerInfo.getLists());
+        }
+        if (currPage == pagerInfo.getTotalPages()) {
+            // 显示加载到底的提示
+            contentAdapter.setLoadState(contentAdapter.LOADING_END);
+            isLoadMore = false;
+        } else {
+            contentAdapter.setLoadState(contentAdapter.LOADING_COMPLETE);
             currPage = pagerInfo.getPage() + 1;
         }
     }
