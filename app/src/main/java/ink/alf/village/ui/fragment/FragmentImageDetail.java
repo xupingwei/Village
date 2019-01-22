@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.bumptech.glide.Glide;
@@ -18,6 +17,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.github.chrisbanes.photoview.PhotoView;
 import com.github.chrisbanes.photoview.PhotoViewAttacher;
 
 import ink.alf.village.R;
@@ -29,13 +29,12 @@ import ink.alf.village.utils.ToastUtils;
 public class FragmentImageDetail extends Fragment {
 
     private String mImageUrl;
-    private ImageView mImageView;
+    private PhotoView mImageView;
     private ProgressBar progressBar;
     private PhotoViewAttacher mAttacher;
 
     public static FragmentImageDetail newInstance(String imageUrl) {
         final FragmentImageDetail f = new FragmentImageDetail();
-
         final Bundle args = new Bundle();
         args.putString("url", imageUrl);
         f.setArguments(args);
@@ -50,23 +49,20 @@ public class FragmentImageDetail extends Fragment {
                 : null;
         requestOptions = new RequestOptions();
         requestOptions.placeholder(R.mipmap.icon_image_default)
-                .centerCrop()
+                .fitCenter()
                 .error(R.mipmap.icon_image_default)
-                .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View v = inflater.inflate(R.layout.fragment_image_detail,
-                container, false);
-        mImageView = (ImageView) v.findViewById(R.id.image);
+        final View v = inflater.inflate(R.layout.fragment_image_detail, container, false);
+        mImageView = v.findViewById(R.id.image);
         mAttacher = new PhotoViewAttacher(mImageView);
-
-        mAttacher.setOnPhotoTapListener((view, x, y) -> getActivity().finish());
-
-        progressBar = (ProgressBar) v.findViewById(R.id.loading);
+        mAttacher.setZoomable(true);
+        mAttacher.setOnClickListener((view) -> getActivity().finish());
+        progressBar = v.findViewById(R.id.loading);
         return v;
     }
 
@@ -95,5 +91,6 @@ public class FragmentImageDetail extends Fragment {
                     }
                 })
                 .into(mImageView);
+
     }
 }

@@ -8,6 +8,7 @@ import com.jaeger.library.StatusBarUtil;
 
 import butterknife.ButterKnife;
 import ink.alf.village.R;
+import ink.alf.village.bean.vo.UserInfo;
 
 
 /**
@@ -32,6 +33,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected String getToken() {
         return "40289fd4684070d80168407325490000";
+    }
+
+
+    protected UserInfo getUserInfo() {
+        return new UserInfo("40289ecc67cfcfb10167cfd8ca370000",
+                "40289ecc67cfcfb10167cfd8ca370000", "Jone");
     }
 
     /**
