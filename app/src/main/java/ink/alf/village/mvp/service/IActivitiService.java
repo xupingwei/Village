@@ -24,6 +24,15 @@ public interface IActivitiService {
     @FormUrlEncoded
     Observable<ResponseBody> listNewer(@FieldMap Map<String, Object> bean);
 
+    /**
+     * 分類查詢
+     *
+     * @param bean 參數
+     * @return
+     */
+    @POST("/activiti/listCatagory")
+    @FormUrlEncoded
+    Observable<ResponseBody> listCatagory(@FieldMap Map<String, Object> bean);
 
     /**
      * activiti 點讚

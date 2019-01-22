@@ -13,7 +13,6 @@ public class MainConstants {
     public static final String ACTION_LOGIN = "action_login";
     public static final String ACTION_SHARE = "action_share";
 
-
     public static Map<String, String> TABS = new HashMap<>();
 
     static {

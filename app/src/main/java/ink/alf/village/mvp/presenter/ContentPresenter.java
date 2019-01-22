@@ -59,6 +59,36 @@ public class ContentPresenter {
     }
 
     /**
+     * 分類查詢
+     *
+     * @param token     用戶登錄標識
+     * @param salt      分類類別
+     * @param page      當前頁碼
+     * @param pageCount 每頁顯示的數量
+     */
+    public void listCatagory(String token, String salt, int page, int pageCount) {
+        Map<String, Object> mapValus = new HashMap<>();
+        mapValus.put("token", token);
+        mapValus.put("page", page);
+        mapValus.put("pageCount", pageCount);
+        mapValus.put("salt", salt);
+        RetrofitClient.getRetrofit().create(IActivitiService.class).listCatagory(mapValus)
+                .compose(SchedulersCompat.applyIoSchedulers())
+                .subscribe(new ApiCallback(mContext) {
+                    @Override
+                    public void onSuccess(String data) {
+                        ActivitiPagerInfo info = JSON.parseObject(data, ActivitiPagerInfo.class);
+                        iContentView.loadMainDataSuccess(info);
+                    }
+
+                    @Override
+                    public void onFailure(int errorCode, String msg) {
+                        iContentView.loadMainDataFailed(msg, errorCode);
+                    }
+                });
+    }
+
+    /**
      * @param userId 點讚用戶的id
      * @param acId   被點讚的活動id
      * @param follow 1:點讚  0：取消點讚

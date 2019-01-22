@@ -3,7 +3,6 @@ package ink.alf.village.ui;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +64,6 @@ public class ImageAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        Log.d("ImageAdapter", "getView: " + images[position]);
         Glide.with(fragment).load(images[position]).apply(options).into(holder.ivImage);
         return convertView;
     }
