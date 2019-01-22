@@ -51,7 +51,7 @@ public class FragmentImageDetail extends Fragment {
         requestOptions.placeholder(R.mipmap.icon_image_default)
                 .fitCenter()
                 .error(R.mipmap.icon_image_default)
-                .diskCacheStrategy(DiskCacheStrategy.NONE);
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
     }
 
     @Override

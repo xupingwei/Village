@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 
 import butterknife.BindView;
@@ -35,7 +36,8 @@ public class ImageAdapter extends BaseAdapter {
         this.fragment = fragment;
         this.mContext = mContext;
         options = new RequestOptions();
-        options.centerCrop().placeholder(R.mipmap.icon_image_default);
+        options.centerCrop().placeholder(R.mipmap.icon_image_default)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
     }
 
     @Override

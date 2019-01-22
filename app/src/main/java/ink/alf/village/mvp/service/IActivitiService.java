@@ -24,4 +24,26 @@ public interface IActivitiService {
     @FormUrlEncoded
     Observable<ResponseBody> listNewer(@FieldMap Map<String, Object> bean);
 
+
+    /**
+     * activiti 點讚
+     *
+     * @param bean 參數
+     * @return
+     */
+    @POST("/activiti/follow")
+    @FormUrlEncoded
+    Observable<ResponseBody> follow(@FieldMap Map<String, Object> bean);
+
+
+    /**
+     * activiti 收藏
+     *
+     * @param bean 參數
+     * @return
+     */
+    @POST("/activiti/collect")
+    @FormUrlEncoded
+    Observable<ResponseBody> collect(@FieldMap Map<String, Object> bean);
+
 }

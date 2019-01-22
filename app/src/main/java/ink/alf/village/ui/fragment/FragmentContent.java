@@ -96,16 +96,20 @@ public class FragmentContent extends BaseFragment implements IContentView, Swipe
                     followIds = new ArrayList<>();
                 }
                 int f = beans.get(position).getFollow();
+                int follow = 0;
                 if (followIds.contains(userId)) {
                     followIds.remove(userId);
                     beans.get(position).setFollow((f - 1) < 0 ? 0 : f - 1);
+                    follow = 0;
                 } else {
                     followIds.add(userId);
                     beans.get(position).setFollow(f + 1);
+                    follow = 1;
                 }
                 beans.get(position).setFollowUserIds(JSON.toJSONString(followIds));
                 Log.d(TAG, "onFollowClickListener: " + JSON.toJSONString(beans));
                 contentAdapter.notifyDataSetChanged();
+                contentPresenter.follow(userId, beans.get(position).getId(), follow);
             }
 
             @Override
@@ -115,15 +119,19 @@ public class FragmentContent extends BaseFragment implements IContentView, Swipe
                     collectIds = new ArrayList<>();
                 }
                 int c = beans.get(position).getCollect();
+                int collect = 0;
                 if (collectIds.contains(userId)) {
                     collectIds.remove(userId);
                     beans.get(position).setCollect((c - 1) < 0 ? 0 : c - 1);
+                    collect = 0;
                 } else {
                     collectIds.add(userId);
                     beans.get(position).setCollect(c + 1);
+                    collect = 1;
                 }
                 beans.get(position).setCollectUserIds(JSON.toJSONString(collectIds));
                 contentAdapter.notifyDataSetChanged();
+                contentPresenter.collect(userId, beans.get(position).getId(), collect);
             }
         });
     }
@@ -160,5 +168,15 @@ public class FragmentContent extends BaseFragment implements IContentView, Swipe
             refreshLayout.setRefreshing(false);
         }
 
+    }
+
+    @Override
+    public void followSuccess(String msg) {
+        Log.d(TAG, "followSuccess: " + msg);
+    }
+
+    @Override
+    public void collectSuccess(String msg) {
+        Log.d(TAG, "collectSuccess: " + msg);
     }
 }

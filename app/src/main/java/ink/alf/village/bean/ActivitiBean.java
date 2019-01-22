@@ -21,6 +21,7 @@ import java.util.Date;
  * }
  */
 public class ActivitiBean implements Serializable {
+    private String id;
     private String headUrl;
     private String pushNickName;
 
@@ -51,6 +52,14 @@ public class ActivitiBean implements Serializable {
     private String collectUserIds;
 
     public ActivitiBean() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFollowUserIds() {
