@@ -12,9 +12,9 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/ll_top"
             android:layout_width="match_parent"
             android:layout_height="260dp"
-            android:id="@+id/ll_top"
             android:background="@mipmap/logo_bg"
             android:orientation="vertical">
 
@@ -68,10 +68,10 @@
 
 
         <RelativeLayout
+            android:id="@+id/rl_nickname_layout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
-            android:id="@+id/rl_nickname_layout"
             android:background="@color/colorWhite"
             android:paddingStart="20dp"
             android:paddingEnd="20dp">
@@ -90,15 +90,15 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@+id/iv_arrow"
-                android:text="PingW"
+                android:text=""
                 android:textColor="@color/colorDarkBlack"
                 android:textSize="@dimen/text16" />
 
 
             <ink.alf.village.widget.IconfontTextView
+                android:id="@+id/iv_arrow"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:id="@+id/iv_arrow"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:gravity="center"
@@ -124,18 +124,19 @@
                 android:textSize="@dimen/text14" />
 
             <TextView
+                android:id="@+id/tv_gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@+id/iv_arrow_gender"
-                android:text="女"
+                android:text=""
                 android:textColor="@color/colorDarkBlack"
                 android:textSize="@dimen/text16" />
 
             <ink.alf.village.widget.IconfontTextView
+                android:id="@+id/iv_arrow_gender"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:id="@+id/iv_arrow_gender"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:gravity="center"
@@ -167,14 +168,14 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@+id/iv_arrow_wx"
-                android:text="已认证"
+                android:text=""
                 android:textColor="@color/colorOrange"
                 android:textSize="@dimen/text16" />
 
             <ink.alf.village.widget.IconfontTextView
+                android:id="@+id/iv_arrow_wx"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:id="@+id/iv_arrow_wx"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:gravity="center"
@@ -207,14 +208,14 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@+id/iv_arrow_alipay"
-                android:text="未认证"
+                android:text=""
                 android:textColor="@color/colorGray"
                 android:textSize="@dimen/text16" />
 
             <ink.alf.village.widget.IconfontTextView
+                android:id="@+id/iv_arrow_alipay"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:id="@+id/iv_arrow_alipay"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:gravity="center"
@@ -247,14 +248,14 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toStartOf="@+id/iv_auth_phone"
-                android:text="18390872563"
+                android:text=""
                 android:textColor="@color/colorOrange"
                 android:textSize="@dimen/text16" />
 
             <ink.alf.village.widget.IconfontTextView
+                android:id="@+id/iv_auth_phone"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:id="@+id/iv_auth_phone"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:gravity="center"
@@ -304,9 +305,9 @@
 
 
             <ink.alf.village.widget.IconfontTextView
+                android:id="@+id/iv_arrow_upgrade"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:id="@+id/iv_arrow_upgrade"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:gravity="center"
@@ -328,7 +329,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="分享"
+                android:text="分享给朋友"
                 android:textColor="@color/colorDarkGrey"
                 android:textSize="@dimen/text14" />
 
