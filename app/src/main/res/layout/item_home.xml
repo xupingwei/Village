@@ -128,11 +128,6 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <!--<ImageView-->
-            <!--android:id="@+id/iv_follow"-->
-            <!--android:layout_width="25dp"-->
-            <!--android:layout_height="25dp"-->
-            <!--android:background="@mipmap/ic_unfollow" />-->
             <ink.alf.village.widget.IconfontTextView
                 android:id="@+id/item_it_follow"
                 android:layout_width="30dp"

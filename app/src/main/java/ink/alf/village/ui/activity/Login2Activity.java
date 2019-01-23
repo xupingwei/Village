@@ -37,5 +37,16 @@ public class Login2Activity extends BaseActivity {
     protected void initView(Bundle savedInstanceState) {
         itBackLogin.setOnClickListener(v -> this.finish());
         tvRegister.setOnClickListener(v -> startActivity(new Intent(this, RegisterActivity.class)));
+        btnLogin.setOnClickListener(v -> login());
+    }
+
+    /**
+     * 登录
+     */
+    private void login() {
+        preferencesHelper.put("login", true);
+        preferencesHelper.put("token", "40289ecc67cfcfb10167cfd8ca370000");
+        startActivity(new Intent(this, MainActivity.class));
+        this.finish();
     }
 }
