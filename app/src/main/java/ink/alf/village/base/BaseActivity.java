@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.alibaba.fastjson.JSON;
 import com.jaeger.library.StatusBarUtil;
 
 import butterknife.ButterKnife;
 import ink.alf.village.R;
 import ink.alf.village.bean.vo.UserInfo;
+import ink.alf.village.common.MainConstants;
 import ink.alf.village.utils.SharedPreferencesHelper;
 
 
@@ -36,13 +38,13 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 
     protected String getToken() {
-        return (String) preferencesHelper.getValueForKey("token", "token");
+        return (String) preferencesHelper.getValueForKey(MainConstants.TOKEN, "token");
     }
 
 
     protected UserInfo getUserInfo() {
-        return new UserInfo("40289ecc67cfcfb10167cfd8ca370000",
-                "40289ecc67cfcfb10167cfd8ca370000", "Jone");
+        return JSON.parseObject((String) preferencesHelper.getValueForKey(MainConstants.USER_INFO,
+                ""), UserInfo.class);
     }
 
     /**
@@ -51,7 +53,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @return true：已经登录  false：没有登录
      */
     protected boolean isLogin() {
-        return (boolean) preferencesHelper.getValueForKey("login", false);
+        return (boolean) preferencesHelper.getValueForKey(MainConstants.IS_LOGIN, false);
     }
 
     /**

@@ -22,4 +22,13 @@ public class MainConstants {
         TABS.put("PERSON", "村里人");
         TABS.put("THING", "村里事");
     }
+
+
+
+    public static final String TOKEN = "token";
+    public static final String USER_ID = "user_id";
+    public static final String IS_LOGIN = "login";
+    public static final String USER_INFO = "user_info";
 }
+
+

@@ -66,7 +66,7 @@ public class PublishPresenter {
         mapValus.put("address", bean.getAddress());
         RetrofitClient.getRetrofit().create(IActivitiService.class).createActiviti(token, mapValus)
                 .compose(SchedulersCompat.applyIoSchedulers())
-                .subscribe(new ApiCallback(mContext) {
+                .subscribe(new ApiCallback(mContext,false) {
                     @Override
                     public void onSuccess(String data) {
                         ActivitiBean activitiBean = JSON.parseObject(data, ActivitiBean.class);

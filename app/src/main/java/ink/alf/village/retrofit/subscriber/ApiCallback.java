@@ -13,13 +13,13 @@ import android.content.Context;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
 
 import java.io.IOException;
 import java.net.ConnectException;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import ink.alf.village.retrofit.ResultBean;
+import ink.alf.village.utils.DialogUtils;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import okhttp3.ResponseBody;
@@ -37,7 +37,7 @@ public abstract class ApiCallback implements Observer<ResponseBody> {
     protected Context mContext;
     private SweetAlertDialog dialog;
     private String msg;
-    private boolean isShow = false;
+    private boolean isShow = true;
     //对应HTTP的状态码
     private static final int UNAUTHORIZED = 401;
     private static final int FORBIDDEN = 403;
@@ -66,8 +66,16 @@ public abstract class ApiCallback implements Observer<ResponseBody> {
         this(context, "正在加载", true);
     }
 
+    public ApiCallback(Context context, boolean isShow) {
+        this(context, "正在加载", isShow);
+    }
+
     @Override
     public void onSubscribe(final Disposable d) {
+
+        if (isShow) {
+            DialogUtils.show(mContext);
+        }
     }
 
 
@@ -78,8 +86,6 @@ public abstract class ApiCallback implements Observer<ResponseBody> {
             Log.i(TAG, "onNext: body = " + body);
             ResultBean bean = JSON.parseObject(body, ResultBean.class);
             if (bean.success()) {
-//                T t = JSON.parseObject(bean.getData(), new TypeReference<T>() {
-//                });
                 onSuccess(bean.getData());
             } else {
                 onFailure(bean.getCode(), bean.getMsg());
@@ -144,6 +150,7 @@ public abstract class ApiCallback implements Observer<ResponseBody> {
 
     @Override
     public void onComplete() {
+        if (isShow) DialogUtils.dimiss();
         Log.i(TAG, "onComplete: done");
     }
 

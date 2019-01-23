@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.angel.view.SWImageView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -102,7 +102,14 @@ public class ContentAdapter extends RecyclerView.Adapter {
             holder.tvUserName.setText(bean.getPushNickName());
             holder.tvPushTime.setText(DateUtils.dateToString(bean.getCreateTime(), DateUtils.DATATIME_FORMMATER));
             holder.tvCatagory.setText(bean.getCatagory());
-            Glide.with(mContext).asBitmap().load(bean.getHeadUrl()).into(holder.ivUserAvatar);
+            Glide.with(mContext).asBitmap()
+                    .load(bean.getHeadUrl())
+                    .apply(new RequestOptions()
+                            .error(R.mipmap.ic_avatar_default)
+                            .placeholder(R.mipmap.ic_avatar_default)
+                            .centerCrop()
+                    )
+                    .into(holder.ivUserAvatar);
             holder.tvContent.setText(bean.getContent());
             holder.tvFollow.setText(bean.getFollow() + "");
             holder.tvCollect.setText(bean.getCollect() + "");

@@ -16,7 +16,6 @@ import ink.alf.village.bean.Region;
 import ink.alf.village.mvp.presenter.SelectAreaPresenter;
 import ink.alf.village.mvp.view.ISelectAreaView;
 import ink.alf.village.ui.AreaAdapter;
-import ink.alf.village.utils.DialogUtils;
 import ink.alf.village.utils.ToastUtils;
 import ink.alf.village.widget.IconfontTextView;
 
@@ -50,14 +49,12 @@ public class SelectAreaActivity extends BaseActivity implements ISelectAreaView 
         selectAreaPresenter = new SelectAreaPresenter(this, this);
         tvRefreshLocation.setOnClickListener(v -> selectAreaPresenter.refreshLocation());
         //开始请求
-        DialogUtils.show(this);
         selectAreaPresenter.findAllRegions();
 
     }
 
     @Override
     public void loadRegionsSuccess(List<Region> regions) {
-        DialogUtils.dimiss();
         gvArea.setAdapter(new AreaAdapter(this, regions));
         gvArea.setOnItemClickListener((parent, view, position, id) ->
                 ToastUtils.showToast(SelectAreaActivity.this, regions.get(position).getDistrict()));
@@ -66,7 +63,6 @@ public class SelectAreaActivity extends BaseActivity implements ISelectAreaView 
 
     @Override
     public void loadRegionsFailure(String msg, int code) {
-        DialogUtils.dimiss();
         ToastUtils.showToast(this, msg);
     }
 

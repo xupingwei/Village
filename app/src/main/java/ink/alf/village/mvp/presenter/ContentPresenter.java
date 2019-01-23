@@ -44,7 +44,7 @@ public class ContentPresenter {
         mapValus.put("pageCount", pageCount);
         RetrofitClient.getRetrofit().create(IActivitiService.class).listNewer(mapValus)
                 .compose(SchedulersCompat.applyIoSchedulers())
-                .subscribe(new ApiCallback(mContext) {
+                .subscribe(new ApiCallback(mContext, false) {
                     @Override
                     public void onSuccess(String data) {
                         ActivitiPagerInfo info = JSON.parseObject(data, ActivitiPagerInfo.class);
@@ -74,7 +74,7 @@ public class ContentPresenter {
         mapValus.put("salt", salt);
         RetrofitClient.getRetrofit().create(IActivitiService.class).listCatagory(mapValus)
                 .compose(SchedulersCompat.applyIoSchedulers())
-                .subscribe(new ApiCallback(mContext) {
+                .subscribe(new ApiCallback(mContext, false) {
                     @Override
                     public void onSuccess(String data) {
                         ActivitiPagerInfo info = JSON.parseObject(data, ActivitiPagerInfo.class);
@@ -101,7 +101,7 @@ public class ContentPresenter {
         params.put("follow", follow);
         RetrofitClient.getRetrofit().create(IActivitiService.class).follow(params)
                 .compose(SchedulersCompat.applyIoSchedulers())
-                .subscribe(new ApiCallback(mContext) {
+                .subscribe(new ApiCallback(mContext, false) {
                     @Override
                     public void onSuccess(String data) {
                         iContentView.followSuccess("點讚成功");
@@ -129,7 +129,7 @@ public class ContentPresenter {
         params.put("collect", collect);
         RetrofitClient.getRetrofit().create(IActivitiService.class).collect(params)
                 .compose(SchedulersCompat.applyIoSchedulers())
-                .subscribe(new ApiCallback(mContext) {
+                .subscribe(new ApiCallback(mContext, false) {
                     @Override
                     public void onSuccess(String data) {
                         iContentView.collectSuccess("收藏成功");

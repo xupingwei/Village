@@ -19,12 +19,6 @@
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/text20" />
 
-        <!--<ImageButton-->
-        <!--android:layout_width="25dp"-->
-        <!--android:layout_height="25dp"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:layout_marginStart="10dp"-->
-        <!--android:background="@mipmap/ic_back_white" />-->
         <ink.alf.village.widget.IconfontTextView
             android:id="@+id/it_back_register"
             android:layout_width="50dp"

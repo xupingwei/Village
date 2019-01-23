@@ -11,7 +11,6 @@ import ink.alf.village.base.BaseApplication;
 import ink.alf.village.bean.MessageEvent;
 import ink.alf.village.common.MainConstants;
 import ink.alf.village.mvp.view.ILoginView;
-import ink.alf.village.utils.DialogUtils;
 
 /**
  * @author 13793
@@ -30,11 +29,9 @@ public class LoginPresenter {
 
     public void wxLogin() {
 
-        DialogUtils.show(mContext);
 
         if (!BaseApplication.iwxapi.isWXAppInstalled()) {
             iLoginView.wxLoginFailed("您还未安装微信客户端", -40011);
-            DialogUtils.dimiss();
             return;
         }
         SendAuth.Req req = new SendAuth.Req();
@@ -47,11 +44,9 @@ public class LoginPresenter {
     public void onMessageEvent(MessageEvent event) {
         if (event.getErrCode() != 0) {
             iLoginView.wxLoginFailed(event.getMsg(), event.getErrCode());
-            DialogUtils.dimiss();
             return;
         }
         if (!event.getAction().equals(MainConstants.ACTION_LOGIN)) {
-            DialogUtils.dimiss();
             return;
         }
         //拿到code，二次网络请求获取access_token和用户信息
