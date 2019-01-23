@@ -29,6 +29,7 @@ import ink.alf.village.bean.ActivitiBean;
 import ink.alf.village.listener.IOperationOnClickListener;
 import ink.alf.village.ui.activity.ImagePagerActivity;
 import ink.alf.village.utils.DateUtils;
+import ink.alf.village.widget.IconfontTextView;
 import ink.alf.village.widget.MyGridView;
 
 /**
@@ -117,23 +118,23 @@ public class ContentAdapter extends RecyclerView.Adapter {
             List<String> collectIds = JSON.parseArray(bean.getCollectUserIds(), String.class);
 
             if (null != followIds && followIds.contains(userId)) {
-                holder.ivFollow.setBackgroundResource(R.mipmap.ic_follow);
+                holder.itFollow.setTextColor(mContext.getResources().getColor(R.color.colorAccent));
             } else {
-                holder.ivFollow.setBackgroundResource(R.mipmap.ic_unfollow);
+                holder.itFollow.setTextColor(mContext.getResources().getColor(R.color.colorDarkGrey));
             }
 
             if (null != collectIds && collectIds.contains(userId)) {
-                holder.ivCollect.setBackgroundResource(R.mipmap.ic_collect);
+                holder.itCollect.setTextColor(mContext.getResources().getColor(R.color.colorAccent));
             } else {
-                holder.ivCollect.setBackgroundResource(R.mipmap.ic_uncollect);
+                holder.itCollect.setTextColor(mContext.getResources().getColor(R.color.colorDarkGrey));
             }
 
-            holder.ivFollow.setOnClickListener(v -> {
+            holder.itFollow.setOnClickListener(v -> {
                 if (null != iOperationOnClickListener) {
                     iOperationOnClickListener.onFollowClickListener(followIds, userId, i);
                 }
             });
-            holder.ivCollect.setOnClickListener(v -> {
+            holder.itCollect.setOnClickListener(v -> {
                 if (null != iOperationOnClickListener) {
                     iOperationOnClickListener.onCollectClickListener(collectIds, userId, i);
                 }
@@ -198,8 +199,6 @@ public class ContentAdapter extends RecyclerView.Adapter {
         SWImageView ivUserAvatar;
         @BindView(R.id.tv_user_name)
         TextView tvUserName;
-        @BindView(R.id.iv_time)
-        ImageView ivTime;
         @BindView(R.id.tv_push_time)
         TextView tvPushTime;
         @BindView(R.id.tv_catagory)
@@ -212,10 +211,10 @@ public class ContentAdapter extends RecyclerView.Adapter {
         TextView tvFollow;
         @BindView(R.id.tv_collect)
         TextView tvCollect;
-        @BindView(R.id.iv_follow)
-        ImageView ivFollow;
-        @BindView(R.id.iv_collect)
-        ImageView ivCollect;
+        @BindView(R.id.item_it_follow)
+        IconfontTextView itFollow;
+        @BindView(R.id.item_it_collect)
+        IconfontTextView itCollect;
 
         public ViewHolder(View view) {
             super(view);

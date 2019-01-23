@@ -3,7 +3,6 @@ package ink.alf.village.ui.activity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
@@ -19,14 +18,15 @@ import ink.alf.village.mvp.view.ISelectAreaView;
 import ink.alf.village.ui.AreaAdapter;
 import ink.alf.village.utils.DialogUtils;
 import ink.alf.village.utils.ToastUtils;
+import ink.alf.village.widget.IconfontTextView;
 
 /**
  * @author 13793
  */
 public class SelectAreaActivity extends BaseActivity implements ISelectAreaView {
 
-    @BindView(R.id.iv_area_back)
-    ImageView ivBack;
+    @BindView(R.id.it_back)
+    IconfontTextView itBack;
     @BindView(R.id.btn_location_city)
     Button btnLocationCity;
     @BindView(R.id.tv_refresh_location)
@@ -45,7 +45,7 @@ public class SelectAreaActivity extends BaseActivity implements ISelectAreaView 
 
     @Override
     protected void initView(Bundle savedInstanceState) {
-        ivBack.setOnClickListener(v -> this.finish());
+        itBack.setOnClickListener(v -> this.finish());
         //
         selectAreaPresenter = new SelectAreaPresenter(this, this);
         tvRefreshLocation.setOnClickListener(v -> selectAreaPresenter.refreshLocation());

@@ -5,6 +5,9 @@ import android.graphics.Typeface;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
+/**
+ * @author 13793
+ */
 public class IconfontTextView extends AppCompatTextView {
 
 
@@ -22,7 +25,7 @@ public class IconfontTextView extends AppCompatTextView {
     }
 
     private void init() {
-        Typeface iconfont = Typeface.createFromAsset(getResources().getAssets(), "iconfont.ttf");
+        Typeface iconfont = Typeface.createFromAsset(getResources().getAssets(), "iconfont/iconfont.ttf");
         this.setTypeface(iconfont);
     }
 }

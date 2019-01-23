@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_background"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="新用户注册"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text20" />
+
+        <!--<ImageButton-->
+        <!--android:layout_width="25dp"-->
+        <!--android:layout_height="25dp"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginStart="10dp"-->
+        <!--android:background="@mipmap/ic_back_white" />-->
+        <ink.alf.village.widget.IconfontTextView
+            android:id="@+id/it_back_register"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:gravity="center"
+            android:text="@string/ic_back"
+            android:textColor="@drawable/text_state_selector"
+            android:textSize="@dimen/text20" />
+
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:text="登录"
+            android:textColor="@drawable/text_state_selector"
+            android:textSize="@dimen/text16" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#50dbdbdb" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:background="@color/colorGray"
+            android:gravity="center"
+            android:text="LOGO" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:orientation="horizontal">
+
+        <ink.alf.village.widget.IconfontTextView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="@string/ic_phone"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text18" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="3dp"
+            android:background="@color/colorWhite" />
+
+        <EditText
+            android:id="@+id/et_reg_phone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:hint="手机号"
+            android:inputType="phone"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="#50dbdbdb"
+            android:textSize="@dimen/text14" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="#50dbdbdb" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
+        android:orientation="horizontal">
+
+        <ink.alf.village.widget.IconfontTextView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="@string/ic_code"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text22" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="3dp"
+            android:background="@color/colorWhite" />
+
+        <EditText
+            android:id="@+id/et_reg_code"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请输入验证码"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="#50dbdbdb"
+            android:textSize="@dimen/text14" />
+
+        <Button
+            android:id="@+id/btn_send_code"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite"
+            android:text="获取验证码"
+            android:textColor="@drawable/button_state_selector"
+            android:textSize="@dimen/text14" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="#50dbdbdb" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
+        android:orientation="horizontal">
+
+        <ink.alf.village.widget.IconfontTextView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="@string/ic_pass"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text18" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="3dp"
+            android:background="@color/colorWhite" />
+
+        <EditText
+            android:id="@+id/et_reg_pass"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:background="@null"
+            android:hint="密码"
+            android:inputType="textPassword"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="#50dbdbdb"
+            android:textSize="@dimen/text14" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="#50dbdbdb" />
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:background="@color/colorWhite"
+        android:text="马上注册"
+        android:textColor="@drawable/button_state_selector"
+        android:textSize="@dimen/text16" />
+</LinearLayout>

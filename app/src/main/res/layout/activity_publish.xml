@@ -87,13 +87,16 @@
             android:textColor="@color/colorDarkGrey"
             android:textSize="@dimen/text14" />
 
-        <ImageView
+        <ink.alf.village.widget.IconfontTextView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:id="@+id/iv_label_arrow"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:background="@mipmap/ic_arrow_right" />
+            android:gravity="center"
+            android:text="@string/ic_arrow_right"
+            android:textColor="@color/colorDarkGrey"
+            android:textSize="@dimen/text18" />
 
     </RelativeLayout>
 
