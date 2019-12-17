@@ -34,7 +34,7 @@ public class RetrofitClient {
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
                 @Override
                 public void log(String message) {
-                    Log.i("RxJava----------", message);
+                    Log.d("RxJava----------", message);
                 }
             });
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

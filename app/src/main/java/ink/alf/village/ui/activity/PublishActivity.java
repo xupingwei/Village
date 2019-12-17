@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -13,6 +11,9 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
@@ -171,7 +172,7 @@ public class PublishActivity extends BaseActivity implements IPublishView {
         pushActiviti.setAddress(address);
         List<Uri> uris = imageAddAdapter.getImageLists();
         //开始请求,创建activiti
-        DialogUtils.show(this);
+        DialogUtils.showLoadingDialog(this,"Loading...");
         if (uris.size() == 0) {
             publishPresenter.createActiviti(getToken(), pushActiviti);
         } else {

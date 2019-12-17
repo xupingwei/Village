@@ -87,7 +87,7 @@
             android:enabled="true"
             android:process=":remote" />
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="ink.alf.village.fileprovider"
             android:grantUriPermissions="true"
             android:exported="false">

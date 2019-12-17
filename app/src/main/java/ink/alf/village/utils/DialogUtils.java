@@ -1,29 +1,34 @@
 package ink.alf.village.utils;
 
 import android.content.Context;
+import android.graphics.Color;
 
-import com.android.tu.loadingdialog.LoadingDailog;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class DialogUtils {
 
 
-    private static LoadingDailog loadingDailog;
+    private static SweetAlertDialog sweetAlertDialog;
 
     private DialogUtils() {
     }
 
-    public static void show(Context context) {
-        LoadingDailog.Builder loadBuilder = new LoadingDailog.Builder(context)
-                .setMessage("加载中...")
-                .setCancelable(true)
-                .setCancelOutside(true);
-        loadingDailog = loadBuilder.create();
-        loadingDailog.show();
+    public static void dimiss() {
+        if (null != sweetAlertDialog || sweetAlertDialog.isShowing()) {
+            sweetAlertDialog.dismiss();
+        }
     }
 
-    public static void dimiss() {
-        if (null != loadingDailog) {
-            loadingDailog.dismiss();
+    public static void showLoadingDialog(Context context,String titleText) {
+
+        if (null == sweetAlertDialog) {
+            sweetAlertDialog = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
+            sweetAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+            sweetAlertDialog.setTitleText(titleText);
+            sweetAlertDialog.setCancelable(false);
+        }
+        if (!sweetAlertDialog.isShowing()) {
+            sweetAlertDialog.show();
         }
     }
 }
